@@ -55,10 +55,7 @@ export default {
     // add logos in static and at max add 3/4
     enabled: false,
     meta: [
-      { name: 'SendPost', src: '/images/sendpost.png', url: 'https://sendpost.io' },
-      { name: 'Amazon', src: '/images/amazon.png', url: 'https://amazon.in' },
-      { name: 'InterviewReady', src: '/images/interviewready-io.png', url: 'https://get.interviewready.io' },
-      { name: 'CrioDo', src: '/images/crio.png', url: 'https://crio.do' },
+      { name: 'Company1', src: '/images/sendpost.png', url: 'https://sendpost.io' },
     ]
   },
   loadingIndicator: {

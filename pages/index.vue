@@ -10,7 +10,7 @@
 export default {
   head() {
     return {
-      title: `home -- ${this.$config.name}`,
+      title: `home - ${this.$config.name}`,
     }
   },
   data() {

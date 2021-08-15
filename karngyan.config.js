@@ -1,17 +1,17 @@
 // Upload files in static/ So any file static/file.pdf -> /file.pdf is accessible at root
 
 export default {
-  name: 'gyan prakash karn',
-  domain: 'template.karngyan.com', // add without https:// , used in meta tags and share urls
-  image: '/images/bigheadkarngyan.png',
-  email: 'mail@karngyan.com',
+  name: 'Mano Sriram',
+  domain: 'www.manosriram.com', // add without https:// , used in meta tags and share urls
+  image: '/images/mano-hero.png',
+  email: 'contact@manosriram.com',
   googleAnalyticsV4: {
     enabled: false,
     id: ''
   },
   plausibleAnalytics: {
     enabled: true,
-    domain: 'template.karngyan.com',
+    domain: 'www.manosriram.com',
     trackLocalhost: false,
     // leave it empty if plausible is not self hosted
     apiHost: 'https://analytics.lookatx.dev' // default: https://plausible.io
@@ -19,19 +19,16 @@ export default {
   // enable if you want comments and likes on posts
   // see how it looks on karngyan.com
   firebase: {
-    enabled: true
+    enabled: false
   },
   social: {
-    github: 'karngyan',
-    linkedin: 'karngyan',
-    facebook: 'karnsometimes',
-    twitter: 'gyankarn',
-    instagram: 'karngyan.dev',
-    codestats: 'karngyan' // https://codestats.net make a profile if you dont already have one.
+    github: 'manosriram',
+    linkedin: 'manosriram',
+    youtube: 'manosriram'
   },
   buyMeACoffee: {
     enabled: true,
-    url: 'https://www.buymeacoffee.com/karngyan'
+    url: 'https://www.buymeacoffee.com/manosriram'
   },
   projects: {
     enabled: true,
@@ -41,10 +38,10 @@ export default {
   },
   resume: {
     enabled: true,
-    pdfUrl: '/RESUME_GYAN_KARN_DARK.pdf' // add files in static folder
+    pdfUrl: '/MANO_BACKEND_ENGINEER.pdf' // add files in static folder
   },
   uses: {
-    enabled: true,
+    enabled: false,
     meta: [
       {title: 'OS', value: 'macOS Catalina'},
       {title: 'Memory', value: '16 GB 2667 MHz DDR4'},
@@ -56,7 +53,7 @@ export default {
   },
   workedAt: {
     // add logos in static and at max add 3/4
-    enabled: true,
+    enabled: false,
     meta: [
       { name: 'SendPost', src: '/images/sendpost.png', url: 'https://sendpost.io' },
       { name: 'Amazon', src: '/images/amazon.png', url: 'https://amazon.in' },
@@ -88,16 +85,16 @@ export default {
         projects: 'projects',
         uses: 'uses',
         resume: 'résumé',
-        buyMeACoffee: 'buy me a beer',
+        buyMeACoffee: 'buy me a book',
         signIn: 'sign in',
         signOut: 'sign out'
       },
       hero: {
-        iBlogTech: 'i blog tech',
-        haveALook: 'have a look',
-        friendlyNeighborhood: 'your friendly neighborhood',
-        description: 'i am a software engineer and a part time freelancer. i blog tech, write a weekend newsletter called software shots, and tinker with side projects every now n then.',
-        words: ['developer', 'designer', 'engineer', 'programmer', 'encoder'],
+        iBlogTech: 'tech',
+        haveALook: 'blogs',
+        friendlyNeighborhood: 'I am Mano Sriram. I do',
+        description: 'I am Backend Engineer. I do make videos on Backend Engineering, DevOps and more. I love solving challenging real-world problems using tech.',
+        words: ['Backend Engineering', 'Content Creation'],
       },
       githubCalendar: {
         header: 'contributions',
@@ -105,11 +102,11 @@ export default {
       },
       blog: {
         header: 'blog',
-        subtext: 'i try to write once in a while. let me know your thoughts in comments or mail@karngyan.com'
+        subtext: 'I blog once in a while, let me know your thoughts at contact@manosriram.com'
       },
       recentBlog: {
         header: 'recent blogs',
-        subtext: 'it takes a lot of time to write man'
+        subtext: 'I learn when I write'
       },
       uses: {
         header: 'uses',

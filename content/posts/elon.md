@@ -1,7 +1,7 @@
 ---
 id: 3
 title: Elon Musk, SpaceX, Tesla and more
-image: https://media.thuprai.com/products/Elon_Musk.jpg
+# image: https://media.thuprai.com/products/Elon_Musk.jpg
 createdAt: "2021-08-28 10:10:00"
 tags:
   - reads

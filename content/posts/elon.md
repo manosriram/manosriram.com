@@ -1,3 +1,19 @@
+---
+id: 3
+title: Elon Musk, 
+# image field is not mandatory
+
+# you can skip it to keep the size of blog cards small
+image: https://media.thuprai.com/products/Elon_Musk.jpg
+createdAt: "2021-08-28 10:10:00"
+tags:
+  - reads
+category: books
+author:
+  name: manosriram
+  image: /images/blog-author.png
+---
+
 The Book **"Elon Musk - How the Billioanire CEO of SpaceX and Tesla is shaping our future"** by **Ashlee Vance** bought out some inspiring and life changing thoughts for me. I share some of them which struck me the most.
 
 1. On March 24, 2006, Falcon 1 was launched. After 25 seconds after the launch, Elon felt something wasn't right. A fire broke out in the Merlin Engine and soon after that, the rocket spun and fell directly onto the launch site.

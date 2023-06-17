@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/favicon.png" />
+<title>PiedPiper scalability issues | manosriram</title>
+<meta name="title" content="PiedPiper scalability issues" />
+<meta name="description" content="How PiedPiper scaled for the man who drank his own urine." />
+<meta name="keywords" content="tech,comedy," />
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta property="og:title" content="PiedPiper scalability issues" />
+<meta property="og:description" content="How PiedPiper scaled for the man who drank his own urine." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/blog/pied_piper/" />
+
+<meta property="og:image" content="http://example.org/images/social_card_bg_hu0f7c7fe460ec4b5e9751ccb8d9c9aa0f_651110_280d9020886de677f397fbcbfb6b0ace.webp"/><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-06-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-17T00:00:00+00:00" /><meta property="og:site_name" content="manosriram" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/images/social_card_bg_hu0f7c7fe460ec4b5e9751ccb8d9c9aa0f_651110_280d9020886de677f397fbcbfb6b0ace.webp"/>
+
+<meta name="twitter:title" content="PiedPiper scalability issues"/>
+<meta name="twitter:description" content="How PiedPiper scaled for the man who drank his own urine."/>
+<meta name="twitter:site" content="@manosriram"/>
+
+
+<meta itemprop="name" content="PiedPiper scalability issues">
+<meta itemprop="description" content="How PiedPiper scaled for the man who drank his own urine."><meta itemprop="datePublished" content="2023-06-17T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-06-17T00:00:00+00:00" />
+<meta itemprop="wordCount" content="319">
+
+<meta itemprop="image" content="http://example.org/images/social_card_bg_hu0f7c7fe460ec4b5e9751ccb8d9c9aa0f_651110_280d9020886de677f397fbcbfb6b0ace.webp"/>
+
+
+<meta itemprop="keywords" content="tech,comedy," />
+
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  
+  <link href="/style.min.css" rel="stylesheet">
+
+  
+  <link href="/syntax.min.css" rel="stylesheet">
+
+  
+
+  
+</head>
+
+<body>
+  <header><a href="/" class="title"><h1>manosriram</h1></a>
+<nav>
+  <a href="/">Home</a>
+
+  <a href="/blog/">Blog</a>
+
+
+<a href='mailto:mano.sriram0@gmail.com?subject=Reply%20to%20"PiedPiper%20scalability%20issues"'>Email</a>
+
+<a href="/blog/index.xml">RSS</a>
+
+
+
+
+
+
+
+</nav>
+</header>
+  <main>
+
+<h1>PiedPiper scalability issues</h1>
+<p>
+  <i>
+    <time datetime='2023-06-17' pubdate>
+      2023-06-17
+    </time>
+  </i>
+</p>
+
+<content>
+  <p><img src="/urine_man.webp" alt="s"></p>
+<p>In that episode, there were 5 things they said out loud.</p>
+<ul>
+<li>Compress the Manifests: Dinesh
+A Manifest is a file that contains information required by the video (Title, Description, Captions, Adaptive Bitrate Info, etc…). A Video usually has one master and many rendition manifest files (the smaller the file size, the better).</li>
+</ul>
+<p>Hence, Dinesh tried to decrease the manifest file sizes by compressing them (probably using the algorithm Richard wrote)</p>
+<ul>
+<li>Kill the highspeed bitrate to get more headroom: Gilfoyle
+The video quality depends on the bitrate. Higher the bitrate, the better the quality. There were some disadvantages that pied-piper couldn’t afford at that time.
+a. Higher the bitrate, higher the quality, and hence, higher the space required to store that video.
+b. Higher the bitrate, higher the server resources required to process that file.</li>
+</ul>
+<p>Since pied-piper was self-hosted at that time (thanks to Son of Anton), they couldn’t scale immediately given these issues.</p>
+<ul>
+<li>
+<p>Add new servers: Gilfoyle
+To handle the previous issues, Gilfoyle started adding new servers.</p>
+</li>
+<li>
+<p>Compiling Varnish to cache the manifests: Erlich Bachman
+Varnish is a caching HTTP reverse proxy. Erlich just compiled varnish so that manifest files can be cached for faster responses.</p>
+</li>
+<li>
+<p>Reduce the seeds in the P2P swarm: Dinesh
+I don’t have enough data to reach a conclusion. However, I tried to make the nearest guess I could.</p>
+</li>
+</ul>
+<p>In a Peer2Peer network, where there is no single server.</p>
+<ul>
+<li>
+<p>Seeds or Seeders are the ones who have the entire file and share them (seed) with other peers.</p>
+</li>
+<li>
+<p>Leechers are the ones who have the entire file but don’t share them with other peers.</p>
+</li>
+<li>
+<p>Swarm is a group consisting of peers, seeders, leechers, etc…</p>
+</li>
+</ul>
+<p>Maybe they wanted the peer-to-seed ratio to be optimal. To accommodate new peers, they might have started moving seeds to different swarms with no/fewer seeds.</p>
+<p>Whatever they did, it worked as they rescued the condor man as
+pied-piper scaled it real quick.</p>
+
+</content>
+<p>
+  
+    <a class="blog-tags" href="http://example.org/tags/tech/">#tech</a>&nbsp;&nbsp;
+  
+    <a class="blog-tags" href="http://example.org/tags/comedy/">#comedy</a>&nbsp;&nbsp;
+  
+</p>
+
+  </main>
+  <footer><small>
+  manosriram | 2023
+</small></footer>
+
+    
+</body>
+
+</html>

@@ -8,6 +8,8 @@ tags = ["authorization", "casbin", "policies"]
 
 Casbin is a library used to implement authorization of different kinds. It simplifies the implementation of roles and permissions in general and it does provide out of box useful methods. Casbin uses some entities inorder to define roles and permissions.
 
+![casbin rbac models](/casbin.png)
+
 As you can see, there are different types of authorization models we can use depending on the usecase.
 
 #### Model

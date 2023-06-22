@@ -4,7 +4,7 @@ menu: "main"
 weight: 1
 ---
 
-Hi, I'm Mano Sriram. I am a Software Enginer, backend to be specific. I'm really curious about software and it's inner workings.
+Hi, I'm Mano Sriram. I am a Software Engineer, backend to be specific. I'm really curious about software and it's inner workings.
 I try to get a deeper understanding of how things work which has led me to this path of creating things that
 don't exist.
 

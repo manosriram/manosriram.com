@@ -5,9 +5,6 @@ date = "2023-06-30"
 description = "Editor wars: vscode vs neovim"
 tags = ["text-editor", "tools"]
 +++
-
-# (Neo)Vim vs VSCode
-
 My development setup is Tmux + Neovim + Alacritty.
 
 Tmux is a terminal multiplexer. We can split, rearrange, create multiple terminal panes. Also, you can create multiple tmux sessions.

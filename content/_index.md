@@ -11,7 +11,6 @@ don't exist.
 Technically speaking, I mostly work on Go, Python writing cli-tools, backend servers and more related to that domain.
 I do love devops as well. If I'm deploying something on a server, Docker is my goto tool along with Kubernetes if needed.
 
-Now-a-days, I try to do open source. The reason being, it is where contributions can have a larger affect which is what I aim as
-a software engineer.
+I'm also writing a [database](https://github.com/manosriram/pagedb) from scratch;
 
 You can know more about me via [github](https://github.com/manosriram), [linkedin](https://linkedin.com/in/manosriram), [youtube](https://youtube.com/c/@manosriram).

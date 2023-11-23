@@ -28,5 +28,3 @@ In cases of failure, the kv store restarts. The in-memory hash table now needs t
 When merging, the new inactive datafile being created can exceed the threshold size; Hence, multiple inactive datafiles are created until needed. But definitely, the number of inactive datafiles after merging will either be equal or decreased.
 
 Inorder to make things more faster, a hintfile is created for each inactive datafile. This hintfile will have the keys, and the location of value and size of the value so that its faster to navigate.
-
-I'm writing a KV store from scratch here: https://github.com/manosriram/nimbusdb

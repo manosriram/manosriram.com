@@ -58,8 +58,6 @@ func (b *BTree) Get(key []byte) *KeyDirValue {
 
 However, in the `.Get()` function,  we use `.RLock()` since we allow multiple process reading a value.
 
-We can event test these using a race condition command go provides
-
-`go test ./tests -v --race`
+This command `go test ./tests -v --race` can be run to check for race conditions.
 
 The above code is from a key-value store which I'm writing from scratch. You can find it [here](https://github.com/manosriram/nimbusdb)

@@ -30,7 +30,7 @@ wg.Wait()
 
 The above code creates 1000 goroutines each setting a different value. But, the problem is that multiple go routines can touch the variable where the keyvalue pairs are stored. Why is that a problem? Because we want to be 100% sure that only one process is using the variable at a given moment, which you might have guessed that we'll use locks.
 
-```
+```go
 func (b *BTree) Set(key []byte, value KeyDirValue) *KeyDirValue {
 	b.mu.Lock()
 	defer b.mu.Unlock()
@@ -44,7 +44,7 @@ func (b *BTree) Set(key []byte, value KeyDirValue) *KeyDirValue {
 
 The `b.mu` is of type `sync.RWMutex` meaning it has both shared and exclusive locks available. In the Set function above we use `.Lock()` which means it is a exclusive lock. Any other goroutine cannot access the region until we call `.Unlock()`
 
-```
+```go
 func (b *BTree) Get(key []byte) *KeyDirValue {
 	b.mu.RLock()
 	defer b.mu.RUnlock()
@@ -58,7 +58,8 @@ func (b *BTree) Get(key []byte) *KeyDirValue {
 
 However, in the `.Get()` function,  we use `.RLock()` since we allow multiple process reading a value.
 
-We can event test these using a race condition command go provides.
+We can event test these using a race condition command go provides
+
 `go test ./tests -v --race`
 
 The above code is from a key-value store which I'm writing from scratch. You can find it [here](https://github.com/manosriram/nimbusdb)

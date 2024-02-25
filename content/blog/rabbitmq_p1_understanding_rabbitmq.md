@@ -1,6 +1,6 @@
 +++
 author = "manosriram"
-title = "RabbitMQ #1: Understanding working of RabbitMq"
+title = "RabbitMQ #1: Understanding RabbitMQ"
 date = "2024-02-25"
 description = "Understanding the basic terms of RabbitMQ and how a basic producer/consumer works"
 tags = ["message-broker", "async"]

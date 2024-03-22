@@ -5,6 +5,7 @@ date = "2024-03-23"
 description = "My experience with learning the internals of Interpreters"
 tags = ["interpreters", "compilers", "internals"]
 +++
+### Parsers and Interpreters
 
 I have always been fascinated by how compilers and interpreters worked. It seemed like a very complex piece of technology (and it is), giving me a hard time getting started. Having gone through a few blogs and a couple of books like "Writing an Interpreter in Go", I realized it isn't the end goal that I wanted - creating a language for example.
 

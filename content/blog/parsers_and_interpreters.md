@@ -50,20 +50,4 @@ expr:
 	expr | function_call | var_id | or anything possible for an expression.
 ```
 
-### Statement vs Expression
-- Statement doesn't yield any result.
-- Expression yields a result.
-
-**Statement**
-
-```go
-var s string
-```
-
-**Expression**
-
-```go
-sum + 100
-```
-
 Hopefully, I'll complete this list and understand exactly what's going inside the interpreter.

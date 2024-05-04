@@ -38,7 +38,7 @@ enableRobotsTXT = true
     contentDir = "content"
     [languages.en.params]
       blogPath = "/blog" # Path to your blog section (used by RSS)
-      madeWith = "2023"
+      madeWith = "2024"
 
 [params]
   # The description of your website

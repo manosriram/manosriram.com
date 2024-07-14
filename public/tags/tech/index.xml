@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tech on manosriram</title>
-    <link>http://example.org/tags/tech/</link>
-    <description>Recent content in tech on manosriram</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Tech on manosriram</title>
+    <link>http://localhost:1313/tags/tech/</link>
+    <description>Recent content in Tech on manosriram</description>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>manosriram</copyright>
-    <lastBuildDate>Sat, 17 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PiedPiper scalability issues</title>
-      <link>http://example.org/blog/pied_piper/</link>
+      <link>http://localhost:1313/blog/pied_piper/</link>
       <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/blog/pied_piper/</guid>
-      <description>In that episode, there were 5 things they said out loud.
-Compress the Manifests: Dinesh A Manifest is a file that contains information required by the video (Title, Description, Captions, Adaptive Bitrate Info, etc…). A Video usually has one master and many rendition manifest files (the smaller the file size, the better). Hence, Dinesh tried to decrease the manifest file sizes by compressing them (probably using the algorithm Richard wrote)</description>
+      <guid>http://localhost:1313/blog/pied_piper/</guid>
+      <description>In that episode, there were 5 things they said out loud.&#xA;Compress the Manifests: Dinesh A Manifest is a file that contains information required by the video (Title, Description, Captions, Adaptive Bitrate Info, etc…). A Video usually has one master and many rendition manifest files (the smaller the file size, the better). Hence, Dinesh tried to decrease the manifest file sizes by compressing them (probably using the algorithm Richard wrote)</description>
     </item>
-    
   </channel>
 </rss>

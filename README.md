@@ -1,12 +1,3 @@
-# website
+# Website
 
-Visit at [manosriram.com](https://manosriram.com)
-
----
-
-## Stack
-
-- Framework: [Zola](https://www.getzola.org/)
-- Theme: Adapted [zola-bearblog](https://codeberg.org/alanpearce/zola-bearblog) with some custom styles.
-- Deployment: Caddy + Hetzner VPS + Cloudflare
-- Analytics: Plausible Analytics
+Visit [manosriram.com](https://manosriram.com)

@@ -3,7 +3,7 @@ base_url = "https://manosriram.com"
 title = "Mano Sriram"
 description = "curious human who writes software"
 generate_feeds = false
-feed_filenames = "atom.xml" # default template
+feed_filenames = ["atom.xml"]
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false

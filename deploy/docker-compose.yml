@@ -6,7 +6,7 @@ services:
     container_name: caddy
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - /dev/manosriram.com/public:/var/www/public
+      - /root/dev/manosriram.com/public:/var/www/public
       - caddy_data:/data
       - caddy_config:/config
     ports:

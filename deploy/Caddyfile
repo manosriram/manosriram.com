@@ -1,5 +1,5 @@
 manosriram.com {
-        root * /dev/public/manosriram.com
+        root * /root/dev/public/manosriram.com
         file_server
         tls {
 						on_demand

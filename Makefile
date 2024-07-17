@@ -1,36 +1,25 @@
-# Zola Makefile
 
-# Variables
-ZOLA := zola
-SRC_DIR := public
+SRC_DIR := ./public
+TARGET_DIR := /home/mano/
 TARGET_HOST := mano@$(SERVER_IP)
-TARGET_DIR := /home/mano/dev/public
 
-# Default target
-all: build
+serve:
+	zola serve
 
-# Check if SERVER_IP is set
+build:
+	zola build
+
 check-env:
 ifndef SERVER_IP
 	$(error SERVER_IP is undefined. Use `make deploy SERVER_IP=your.ip.here` or export it as environment variable.)
 endif
 
-# Serve the site using zola
-preview:
-	$(ZOLA) serve
-
-# Build the site using zola
-build:
-	$(ZOLA) build
-
-# Deploy the site using rsync
 deploy: check-env build
-	rsync -avz --delete $(SRC_DIR)/ $(TARGET_HOST):$(TARGET_DIR)
+	rsync -avz --delete $(SRC_DIR) $(TARGET_HOST):$(TARGET_DIR)
 
-# Git commit and push
 push:
-	git add --all
-	git commit -m "automated push"
+	git add .
+	git commit -m "push via automated script"
 	git push origin main
 
-.PHONY: build deploy check-env push
+.PHONY: build check-env deploy push

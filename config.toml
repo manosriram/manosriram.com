@@ -1,75 +1,36 @@
-baseURL = 'https://manosriram.com/'
-languageCode = 'en-us'
-title = 'manosriram'
-theme = 'hugo-bearcub'
+# The URL the site will be built for
+base_url = "https://manosriram.com"
+title = "Mano Sriram"
+description = "curious human who writes software"
+generate_feed = false
+feed_filename = "atom.xml" # default template
 
-googleAnalytics = "G-4YG5N264F8"
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+minify_html = false
 
-copyright = "manosriram"
-defaultContentLanguage = "en"
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
 
-# Generate a nice robots.txt for SEO
-enableRobotsTXT = true
+taxonomies = [
+  {name = "tags", feed = true},
+]
 
-# Your name. For more information on why this must be a list, see
-# https://discourse.gohugo.io/t/site-author-usage/31459/8
-[author]
-  name = "Mano Sriram"
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "one-dark"
+render_emoji = true
+smart_punctuation = true
+[extra]
+date_format="%d %b, %Y"
+favicon="/images/favicon.png"
 
-# Setup syntax highlighting without inline styles. For more information about
-# why you'd want to avoid inline styles, see
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src#unsafe_inline_styles
-[markup]
-  [markup.highlight]
-    lineNos = true
-    lineNumbersInTable = false
-    # This allows Bear Cub to use a variation of Dracula that is more accessible
-    # to people with poor eyesight. For more information about color contrast
-    # and accessibility, see https://web.dev/color-and-contrast-accessibility/
-    noClasses = false
+[[extra.main_menu]]
+name = "Posts"
+url = "@/posts/_index.md"
 
-# Multilingual mode config. More for information about how to setup translation,
-# see https://gohugo.io/content-management/multilingual/
-[languages]
-  [languages.en]
-    title = "manosriram"
-    languageName = "en-US 🇺🇸"
-    LanguageCode = "en-US"
-    contentDir = "content"
-    [languages.en.params]
-      blogPath = "/blog" # Path to your blog section (used by RSS)
-      madeWith = "2024"
-
-[params]
-  # The description of your website
-  description = "curious human who writes software"
-
-  # The path to your favicon
-  favicon = "/favicon.png"
-
-  # These images will show up when services want to generate a preview of a link
-  # to your site. Ignored if `generateSocialCard = true`. For more information
-  # about previews, see https://gohugo.io/templates/internal#twitter-cards and
-  # https://gohugo.io/templates/internal#open-graph
-  images = ["/hugo-bearcub/images/share.webp"]
-
-  # Dates are displayed following the format below. For more information about
-  # formatting, see https://gohugo.io/functions/format/
-  dateFormat = "2006-01-02"
-
-  # If your blog is multilingual but you haven't translated a page, this theme
-  # will create a disabled link. By setting `hideUntranslated` to true, you can
-  # have the theme simply not show any link
-  hideUntranslated = false
-
-  # (EXPERIMENTAL) This theme is capable of dynamically generating social cards
-  # for posts that don't have `images` defined in their front matter; By setting
-  # `generateSocialCard` to false, you can prevent this behavior. For more
-  # information see layouts/partials/seo_tags.html
-  generateSocialCard = true
-
-  # Social media. Delete any item you aren't using to make sure it won't show up
-  # in your website's metadata.
-  [social]
-    email = "mano.sriram0@gmail.com" # Added to the navbar so readers can reply to posts
-    twitter = "manosriram" # Twitter handle (without '@')
+[[extra.main_menu]]
+name = "TIL"
+url = "@/tils/_index.md"

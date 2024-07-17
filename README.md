@@ -1,4 +1,12 @@
-# manosriram.com
-place where I live on the internet.
+# website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a54d394d-6644-4e94-af3c-ae38f5165274/deploy-status)](https://app.netlify.com/sites/sprightly-donut-1eb0c7/deploys)
+Visit at [manosriram.com](https://manosriram.com)
+
+---
+
+## Stack
+
+- Framework: [Zola](https://www.getzola.org/)
+- Theme: Adapted [zola-bearblog](https://codeberg.org/alanpearce/zola-bearblog) with some custom styles.
+- Deployment: Caddy + Hetzner VPS + Cloudflare
+- Analytics: Plausible Analytics

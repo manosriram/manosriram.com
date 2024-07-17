@@ -1,0 +1,11 @@
+manosriram.com {
+        root * /dev/public/manosriram.com
+        file_server
+        tls {
+						on_demand
+        }
+}
+
+128.199.219.99:80 {
+        redir https://manosriram.com{uri}
+}

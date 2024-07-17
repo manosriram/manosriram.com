@@ -5,7 +5,7 @@ title = "Home"
 
 <div class="home-container">
     <div class="home-content">
-        Just a curious human who loves writing backend and low-level software.
+        Just a curious human who loves writing software.
 
 
 golang, rust, and python; also interested in infrastructure tooling, observability tools, and interpreters.

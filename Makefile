@@ -1,4 +1,9 @@
 
+# test com
+#
+REPO_DIR := /Users/manosriram/dev/manosriram
+REPO_TARGET_DIR := /home/mano/
+
 SRC_DIR := ./public
 TARGET_DIR := /home/mano/
 TARGET_HOST := mano@$(SERVER_IP)
@@ -16,6 +21,7 @@ endif
 
 deploy: check-env build
 	rsync -avz --delete $(SRC_DIR) $(TARGET_HOST):$(TARGET_DIR)
+	rsync -avz --delete $(REPO_DIR) $(TARGET_HOST):$(REPO_TARGET_DIR)
 
 push:
 	git add .

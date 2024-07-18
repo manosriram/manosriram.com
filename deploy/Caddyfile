@@ -1,11 +1,13 @@
 manosriram.com {
         root * /var/www/public
         file_server
+				encode zstd gzip
         tls {
 						on_demand
         }
 				handle_errors {
 						rewrite * /404.html
+						file_server
 				}
 }
 

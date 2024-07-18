@@ -3,6 +3,7 @@ author = "manosriram"
 title = "Key Value Store internals"
 date = "2023-11-23"
 description = "Internals of KV store and difference between KV store and a Cache"
+[taxonomies]
 tags = ["database", "cache", "internals"]
 +++
 

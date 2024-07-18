@@ -3,6 +3,8 @@ author = "manosriram"
 title = "Implementing Authorization using Casbin. Introduction to Casbin RBAC."
 date = "2023-06-21"
 description = "Intro to Casbin RBAC and authorization rules, policies"
+in_search_index = true
+[taxonomies]
 tags = ["authorization", "casbin", "policies"]
 +++
 

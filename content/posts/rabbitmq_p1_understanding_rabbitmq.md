@@ -3,6 +3,7 @@ author = "manosriram"
 title = "RabbitMQ #1: Understanding RabbitMQ"
 date = "2024-02-25"
 description = "Understanding the basic terms of RabbitMQ and how a basic producer/consumer works"
+[taxonomies]
 tags = ["message-broker", "async"]
 +++
 

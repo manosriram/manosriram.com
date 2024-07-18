@@ -3,6 +3,7 @@ author = "manosriram"
 title = "PiedPiper scalability issues"
 date = "2023-06-17"
 description = "How PiedPiper scaled for the man who drank his own urine."
+[taxonomies]
 tags = ["tech", "comedy"]
 +++
 

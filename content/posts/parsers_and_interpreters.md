@@ -3,6 +3,7 @@ author = "manosriram"
 title = "Understanding Parsers and Interpreters"
 date = "2024-03-23"
 description = "My experience with learning the internals of Interpreters"
+[taxonomies]
 tags = ["interpreters", "compilers", "internals"]
 +++
 ### Parsers and Interpreters

@@ -3,6 +3,7 @@ author = "manosriram"
 title = "Handling concurrency in KeyValue stores"
 date = "2023-12-10"
 description = "How is concurrency usually handled in golang using Locks"
+[taxonomies]
 tags = ["database", "internals"]
 +++
 

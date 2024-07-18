@@ -1,7 +1,6 @@
 +++
-title = "Home"
+title = "home"
 +++
-
 
 <div class="home-container">
     <div class="home-content">

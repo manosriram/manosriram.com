@@ -3,6 +3,7 @@ author = "manosriram"
 title = "Neovim vs VSCode"
 date = "2023-06-30"
 description = "Editor wars: vscode vs neovim"
+[taxonomies]
 tags = ["text-editor", "tools"]
 +++
 My development setup is Tmux + Neovim + Alacritty.

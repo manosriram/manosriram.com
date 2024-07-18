@@ -4,6 +4,9 @@ manosriram.com {
         tls {
 						on_demand
         }
+				handle_errors {
+						rewrite * /404.html
+				}
 }
 
 128.199.219.99:80 {

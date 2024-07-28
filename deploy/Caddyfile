@@ -1,16 +1,29 @@
-manosriram.com {
-        root * /var/www/public
-        file_server
+lark.manosriram.com {
+		root * /home/mano/larkdocs/
+				file_server
 				encode zstd gzip
 				tls {
 						on_demand
 				}
-				handle_errors {
-						rewrite * /404.html
-						file_server
+		handle_errors {
+				rewrite * /home/mano/public/404.html
+				file_server
+		}
+}
+
+manosriram.com {
+		root * /home/mano/public/
+				file_server
+				encode zstd gzip
+				tls {
+						on_demand
 				}
+		handle_errors {
+				rewrite * /404.html
+						file_server
+		}
 }
 
 128.199.219.99:80 {
-        redir https://manosriram.com{uri}
+		redir https://manosriram.com{uri}
 }

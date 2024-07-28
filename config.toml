@@ -40,7 +40,7 @@ url = "@/tils/_index.md"
 
 [[extra.main_menu]]
 name = "resume"
-url = "/files/resume.pdf"
+url = "/resume.pdf"
 
 [[extra.authors]]
 name = "Mano Sriram"

@@ -1,0 +1,3 @@
+[build]
+  command = "curl -sSfL https://github.com/getzola/zola/releases/download/vx.y.z/zola-0.19.2-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin/"
+  publish = "/opt/build/repo/public"

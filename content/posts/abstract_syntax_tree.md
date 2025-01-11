@@ -8,8 +8,8 @@ in_search_index = true
 tags = ["interpreters", "low-level"]
 +++
 
-ASTs are a representation of the code. It converts a bunch of meaningless tokens to a tree which represents the code.
-When the code is seen in a form of tree, multiple usecases arise such as:
+ASTs are a representation of the code. It converts a bunch of meaningless tokens into a tree which represents the code.
+When the code is seen in the form of tree, multiple usecases arise such as:
 
 1) Static code analysis - Analyze and find issues in code without executing.
 
@@ -201,7 +201,7 @@ for node in builder.nodes:
 The above code is an extension of whatever was discussed, extending PLUS and MULTIPLY to MINUS, DIVIDE, LPAREN, and RPAREN as well. This will change according to the grammar
 of the language.
 
-The walk method, does and tree traversal and prints out the value of the node. This technique is used in calculate method to combine and calculate the result instead of just
-printing the result.
+The walk method, does a tree traversal and prints out the value of the node. This technique is used in the calculate method to combine and calculate the result instead of just
+printing.
 
 [Code Repository](https://github.com/manosriram/ast)

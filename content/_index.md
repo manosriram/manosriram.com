@@ -7,7 +7,7 @@ title = "home"
         Just a curious human who loves writing software.
 
 
-golang, rust, and python; also interested in infrastructure tooling, observability tools, and interpreters.
+golang, rust, and python; also interested in developer tooling and interpreters.
 
 Apart from my full-time job, I'm building [<u>**outagealert.dev**</u>](https://outagealert.dev); It is a monitoring and notification platform for services and cron jobs.
 

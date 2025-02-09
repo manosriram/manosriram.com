@@ -8,8 +8,8 @@ export default function MobileMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { mounted: isMenuMounted, rendered: isMenuRendered } =
         useDelayedRender(isMenuOpen, {
-            enterDelay: 20,
-            exitDelay: 300,
+            enterDelay: 10,
+            exitDelay: 30,
         });
 
     function toggleMenu() {
@@ -51,7 +51,6 @@ export default function MobileMenu() {
                         <li
                             key={link.href}
                             className='border-b border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 text-sm font-semibold'
-                            style={{ transitionDelay: '150ms' }}
                         >
                             <a href={link.href} className='flex w-auto pb-4'>
                                 {link.name}

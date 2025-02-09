@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import '@fontsource/geist-sans';
+import "@fontsource/jetbrains-mono";
 import Themes from 'astro-themes';
 import ScrollTopAndComment from '../components/ScrollTopAndComment';
 import Navbar from '../components/Navbar.astro';
@@ -26,11 +26,10 @@ const { title, description, ogImage } = Astro.props as Props;
         <link
             rel='alternate'
             type='application/rss+xml'
-            title='0xDedinfosec Blogs'
+            title='manosriram'
             href={`${Astro.site}rss.xml`}
         />
-        <ViewTransitions />
-        <Themes defaultTheme='dark' />
+        <Themes defaultTheme='light' />
     </head>
     <body class='bg-gray-50 dark:bg-gray-900 text-black dark:text-white'>
         <div class='flex flex-col justify-center px-8'>
@@ -41,7 +40,6 @@ const { title, description, ogImage } = Astro.props as Props;
             class='flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900'
         >
             <slot />
-            <Footer />
         </main>
         <ScrollTopAndComment client:only='react' />
     </body>

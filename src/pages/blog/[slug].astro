@@ -41,11 +41,11 @@ const { Content } = await blog.render();
                 <Picture
                     src={Avatar}
                     class='rounded-full h-6 w-6'
-                    alt='Dedsec'
+                    alt='manosriram'
                     formats={['avif', 'webp']}
                 />
                 <p class='ml-2 text-sm text-gray-700 dark:text-gray-300'>
-                    {'Dedsec / '}
+                    {'manosriram / '}
                     {
                         format(
                             parseISO(blog.data.date.toISOString()),
@@ -58,25 +58,18 @@ const { Content } = await blog.render();
                 class='mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0'
             >
                 {readingTime(blog.body).text}
-                {` • `}
-                <BlogPostViews
-                    client:only='react'
-                    slug={blog.slug}
-                    className='views'
-                    increment
-                />
             </p>
         </div>
         <div class='w-full mt-4 prose dark:prose-dark max-w-none break-words'>
-            <h2>Description</h2>
-            <p>{blog.data.description}</p>
+            <h3>{blog.data.description}</h3>
+						<hr/>
             <Content />
         </div>
         <GiscusComment client:only='react' />
         <div class='text-sm text-gray-700 dark:text-gray-300'>
             <a
                 href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
-                    `https://0xdedinfosec.vercel.app/blog/${blog.slug}`
+                    `https://manosriram.com/blog/${blog.slug}`
                 )}`}
                 target='_blank'
                 rel='noopener noreferrer'
@@ -85,7 +78,7 @@ const { Content } = await blog.render();
             </a>
             {` • `}
             <a
-                href='https://github.com/0xdedinfosec/0xdedinfosec-astro'
+                href='https://github.com/manosriram/manosriram-v3'
                 target='_blank'
                 rel='noopener noreferrer'
             >

@@ -8,10 +8,10 @@ export async function GET(context: APIContext) {
         (a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date))
     );
     return rss({
-        title: '0xDedinfosec Blogs',
+        title: 'manosriram:blog',
         description:
-            'I post My Hackthebox writeups and other InfoSec findings here.',
-        site: context.site || 'https://0xdedinfosec.vercel.app',
+            'My internet home',
+        site: context.site || 'https://manosriram.com',
         items: sortedPosts.map((post) => ({
             title: post.data.title,
             pubDate: post.data.date,

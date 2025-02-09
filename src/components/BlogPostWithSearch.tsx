@@ -31,9 +31,6 @@ const BlogPostWithSearch = ({ sortedPosts }: { sortedPosts: any }) => {
                     />
                 </svg>
             </div>
-            <h3 className='mt-8 mb-4 text-2xl font-bold tracking-tight text-black md:text-4xl dark:text-white'>
-                All Posts
-            </h3>
             {!filteredBlogPosts.length && (
                 <p className='mb-4 text-gray-600 dark:text-gray-400'>
                     No posts found.
@@ -62,17 +59,11 @@ const BlogPostWithSearch = ({ sortedPosts }: { sortedPosts: any }) => {
                                     <h4 className='w-full mb-2 text-lg font-medium text-gray-900 md:text-xl dark:text-gray-100'>
                                         {post.data.title}
                                     </h4>
-                                    <p className='w-32 mb-4 text-left text-gray-500 md:text-right md:mb-0'>
-                                        <div className='flex items-center space-x-1'>
-                                            {' '}
-                                            <BlogPostViews slug={post.slug} />
-                                            <span>views</span>
-                                        </div>
-                                    </p>
                                 </div>
-                                <p className='text-gray-600 dark:text-gray-400'>
+                                <p className='text-gray-300 dark:text-gray-300'>
                                     {post.data.description}
                                 </p>
+																<hr/>
                             </div>
                         </a>
                     )

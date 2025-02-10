@@ -23,7 +23,15 @@ const prettyCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
     site: 'https://manosriram.com/',
-    integrations: [tailwind(), react(), mdx(), sitemap()],
+		integrations: [tailwind(), react(), mdx(), sitemap()],
+		// build: {
+				// rollupOptions: {
+						// external: [
+								// "astro:assets",
+								// "astro:asset-imports",
+						// ],
+				// },
+		// },
     markdown: {
         syntaxHighlight: false,
         extendDefaultPlugins: true,

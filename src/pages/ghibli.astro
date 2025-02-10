@@ -1,13 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
-import BlogPostWithSearch from '../components/BlogPostWithSearch';
-
-const allBlogPosts = await getCollection('blogs');
-const sortedPosts = allBlogPosts.sort(
-    (a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date))
-);
+import fs from 'fs';
 const ghibliImagePaths = fs.readdirSync("public/images/ghibli/");
 ---
 
@@ -15,11 +8,10 @@ const ghibliImagePaths = fs.readdirSync("public/images/ghibli/");
     <div
         class='flex flex-col items-start justify-center max-w-2xl mx-auto mb-16'
     >
-		{ghibliImagePaths.map((x) => {
+		{ghibliImagePaths.map((path: string) => {
 		return <img
-		src=`/images/ghibli/${x}`
+		src=`/images/ghibli/${path}`
 				alt='ghibli-art'
-				formats={['avif', 'webp']}
 		/>
 		<br />
 		})}

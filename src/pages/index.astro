@@ -1,21 +1,7 @@
 ---
-import { Picture } from 'astro:assets';
 import MainLayout from '../layouts/MainLayout.astro';
-import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
 import Avatar from '../assets/images/avatar.png';
-import AllTimeViews from '../components/AllTimeViews';
-import BlogPostCard from '../components/BlogPostCard.astro';
-
-const allBlogPosts = await getCollection('blogs');
-const sortedPosts = allBlogPosts.sort(
-    (a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date))
-);
-
-const colors = [
-    'from-[#D8B4FE] to-[#818CF8]',
-    'from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]',
-    'from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]',
-];
 ---
 
 <MainLayout>

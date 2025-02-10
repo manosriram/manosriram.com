@@ -10,17 +10,6 @@ const blogsCollection = defineCollection({
     }),
 });
 
-const snippetsCollection = defineCollection({
-    type: 'content',
-    schema: ({ image }) =>
-        z.object({
-            title: z.string(),
-            description: z.string(),
-            image: image(),
-        }),
-});
-
 export const collections = {
     blogs: blogsCollection,
-    snippets: snippetsCollection,
 };

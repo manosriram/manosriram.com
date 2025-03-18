@@ -27,23 +27,20 @@ export const pathEqual = (a: string, b: string) => {
   return trimSlash(a) === trimSlash(b);
 };
 
-// 添加标签编码和解码函数
 export function encodeTag(tag: string) {
   return tag
-    .replace(/\//g, "%2F") // 确保 / 被正确编码
-    .replace(/\s+/g, "-"); // 空格转换为 -
+    .replace(/\//g, "%2F")
+    .replace(/\s+/g, "-");
 }
 
 export function decodeTag(encodedTag: string) {
   return decodeURIComponent(encodedTag);
 }
 
-// 平铺标签并去重
 export const getUniqueTags = (posts: CollectionEntry<"blog">[]) => {
   const tags: string[] = posts
     .filter(post => !post.data.hide)
     .flatMap(post => post.data.tags)
-    // 进行url编码
     .map(tag => encodeTag(tag));
   return [...new Set(tags)];
 };

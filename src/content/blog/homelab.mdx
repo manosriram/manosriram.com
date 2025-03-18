@@ -6,6 +6,11 @@ pubDate: 2025-01-23
 updatedDate: 2025-01-23
 ---
 
+import { Image } from 'astro:assets';
+import dns from '../../../public/images/dns.jpeg';
+import proxy from '../../../public/images/proxy.png';
+import ssl from '../../../public/images/ssl.png';
+
 I have been thinking about building a home lab for myself for a few months and finally bought a Raspberry Pi 4 (8 GB—model B) this week, inspired by [Thorsten Ball](https://thorstenball.com/) and [this little conversation](https://x.com/manosriram/status/1871115922397958626). My goal is to experiment and also selfhost few things myself.
 
 ## OS
@@ -21,15 +26,13 @@ I installed tailscale to create a secure network via which homelab can be access
 
 ## DNS
 I already own the domain `manosriram.com`, so i just created an `A` record pointing `*.manosriram.com` to the tailscale IP. This points all subdomains to the tailscale IP (port 80).
-![Alt text](/images/dns.jpeg)
+<Image src={dns} alt="dns"/>
 
 And then added an SSL certificate via NPM
-![Alt text](/images/ssl.png)
+<Image src={ssl} alt="ssl"/>
 
 For all proxy hosts, we can now just select the added SSL certificate and it creates the SSL certificate for that subdomain.
-
-![Alt text](/images/proxy.png)
-
+<Image src={proxy} alt="proxy"/>
 
 ## Docker
 All services except tailscale are running inside containers using docker and docker-compose. Tailscale is a separate daemon running outside docker.

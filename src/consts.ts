@@ -20,7 +20,7 @@ export const SEO_CONFIG = {
 
 export const NAV_ITEMS = [
   { text: "home", link: "/" },
-  { text: "blog", link: "/blog" },
+  { text: "blog", link: "/blog/" },
   // { text: "tags", link: "/tags" },
   { text: "résumé", link: "/resume.pdf" },
 ];
@@ -32,6 +32,6 @@ export const BLOG_CONFIG = {
   email: "mailto:contact@manosriram.com",
   tags: {
     title: "Tags",
-    description: "All the tags used in posts.", // 标签页面描述
+    description: "All the tags used in posts.",
   },
 };

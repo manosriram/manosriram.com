@@ -5,6 +5,9 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+	// redirects: {
+		// '/blog': '/blog/',
+	// },
 	site: "https://manosriram.com",
   base: "/",
   integrations: [mdx(), sitemap()],

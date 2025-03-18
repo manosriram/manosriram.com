@@ -14,9 +14,7 @@ export const generateURL = (path: string, base?: string | URL) => {
 
 export const trimSlash = (path: string) => {
   let res = path;
-  if (res.endsWith("/")) {
-    res = res.substring(0, res.length - 1);
-  }
+  if (res.endsWith("/")) {}
   if (res.startsWith("/")) {
     res = res.substring(1);
   }

@@ -21,7 +21,6 @@ const posts = (await getCollection("blog", post => !post.data.hide)).sort(
           </span>
           <a
             href={generateURL(`/blog/${post.id}/`)}
-            transition:name={`post-title-${post.id}`}
           >
             {post.data.title}
           </a>

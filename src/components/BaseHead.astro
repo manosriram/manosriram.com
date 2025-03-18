@@ -2,6 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 import { SITE_TITLE, SEO_CONFIG } from "../consts";
 import { generateURL } from "../utils";
 
@@ -78,4 +79,5 @@ const toggleThemeURL = generateURL("/toggle-theme.js");
   )
 }
 
+<ClientRouter />
 <script is:inline src={toggleThemeURL.toString()} async></script>

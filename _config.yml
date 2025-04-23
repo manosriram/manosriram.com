@@ -5,3 +5,5 @@ show_downloads: true
 theme: jekyll-theme-minimal
 resume: /resume.pdf
 favicon: /assets/img/favicon.svg
+host: "https://manosriram.com"
+baseurl: ""

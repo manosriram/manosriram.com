@@ -4,14 +4,18 @@
 body {
   background-color: #fff;
   padding:50px;
-  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color:#727272;
+  font: 15px/1.5 "Jetbrains Mono", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight:400;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+  text-decoration: underline;
+}
+
+#title {
+  text-decoration: none;
 }
 
 p, ul, ol, table, pre, dl {
@@ -42,6 +46,7 @@ a {
 a:hover, a:focus {
   color:#069;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 a small {
@@ -120,25 +125,25 @@ kbd {
 
 header {
   width:270px;
-  float:left;
-  position:fixed;
+  // float:left;
+  // position:fixed;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
 ul.downloads {
   list-style:none;
-  height:40px;
+  height:30px;
   padding:0;
-  background: #f4f4f4;
-  border-radius:5px;
-  border:1px solid #e0e0e0;
-  width:270px;
+  // background: #f4f4f4;
+  // border-radius:5px;
+  // border:1px solid #e0e0e0;
+  width:300px;
 }
 
 .downloads li {
   width:89px;
   float:left;
-  border-right:1px solid #e0e0e0;
+  // border-right:1px solid #e0e0e0;
   height:40px;
 }
 
@@ -155,7 +160,7 @@ ul.downloads {
   font-size:11px;
   color:#676767;
   display:block;
-  text-align:center;
+  // text-align:center;
   padding-top:6px;
   height:34px;
 }
@@ -186,9 +191,13 @@ strong {
 }
 
 section {
-  width:500px;
-  float:right;
+  width: 85%;
+  // float:right;
   padding-bottom:50px;
+}
+
+.post-list {
+  padding: 0;
 }
 
 small {
@@ -230,8 +239,8 @@ footer {
   section {
     border:1px solid #e5e5e5;
     border-width:1px 0;
-    padding:20px 0;
-    margin:0 0 20px;
+    // padding:20px 0;
+    // margin:0 0 20px;
   }
 
   header a small {

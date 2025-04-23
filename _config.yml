@@ -1,6 +1,7 @@
-title: Minimal theme
+title: Mano Sriram
 logo: /assets/img/logo.png
-description: Minimal is a theme for GitHub Pages.
+description: 
 show_downloads: true
-google_analytics:
 theme: jekyll-theme-minimal
+resume: /resume.pdf
+favicon: /assets/img/favicon.svg

@@ -53,3 +53,11 @@
        url('../fonts/Noto-Sans-700italic/Noto-Sans-700italic.ttf') format('truetype'),
        url('../fonts/Noto-Sans-700italic/Noto-Sans-700italic.svg#NotoSans') format('svg');
 }
+
+@font-face {
+  font-family: 'Jetbrains Mono';
+  font-weight: 700;
+  font-style: italic;
+  src: url('../fonts/Jetbrains-Mono-regular/JetBrainsMono-Regular.woff2') format('woff2'),
+       url('../fonts/Jetbrains-Mono-regular/JetBrainsMono-Regular.ttf') format('woff'),
+}

@@ -8,3 +8,5 @@ I currently work at <a href="https://credshields.com">Credshields</a> - In the p
 Apart from work - I like exploring compilers/interpreters, key-value stores, and developer tools.
 
 previously wrote: <a href="https://github.com/manosriram/nimbusdb">nimbusdb</a>, <a href="https://github.com/manosriram/lark">lark</a>
+
+##### Last updated: 23rd April, 2025

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Key Value Store internals | Mano Sriram</title>
+<meta name="title" content="Key Value Store internals" />
+<meta name="description" content="Internals of KV store and difference between KV store and a Cache" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/key-value-stores/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Key Value Store internals">
+  <meta property="og:description" content="Internals of KV store and difference between KV store and a Cache">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-11-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-11-23T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Key Value Store internals">
+  <meta name="twitter:description" content="Internals of KV store and difference between KV store and a Cache">
+
+
+
+
+  <meta itemprop="name" content="Key Value Store internals">
+  <meta itemprop="description" content="Internals of KV store and difference between KV store and a Cache">
+  <meta itemprop="datePublished" content="2023-11-23T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-11-23T00:00:00+00:00">
+  <meta itemprop="wordCount" content="429">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <h1 id="key-value-store-and-a-cache">Key Value store and a Cache</h1>
+<p>Doesn&rsquo;t Cache use key value to store objects? Then why do we need a key value store?</p>
+<p>The answer is simple, persistence.
+A key-value store is a database but instead of tables and other complex stuff, we simply use a key value structure. Cache&rsquo;s main purpose is to increase read performance.
+Anything you think doesnt change that often, you can cache it. Whereas, KV store focuses more on writes along with reads.</p>
+<h2 id="internals-of-a-key-value-store">Internals of a Key Value store</h2>
+<p>There are multiple parts for a proper kv store. First one being persistence and how a store writes to disk inorder to store data.</p>
+<p>Each entry is written to a file. The structure may vary depending on the implementation, but there will be one active datafile to which the entries are written. When this datafile reaches a threshold size, a new active datafile is created and all the entries will be written in this new datafile. The old datafile is made inactive and it cannot be edited.</p>
+<p>If the implementation is based on BitCask, the store will keep track of all kv locations in-memory. The value will be a pointer locating to the disk location so that it&rsquo;ll be a single random access. Whenever the key is updated, the location is also updated.
+Hence, any get calls will entirely depend on the in-memory hash table.</p>
+<p>Inorder to maintain atomicity and consistency, WAL is created. It stands for Write Ahead Log. Before updating the hash table pointer, we first write it to the disk. We only keep appending the entries to the datafile.</p>
+<p>In cases of failure, the kv store restarts. The in-memory hash table now needs the old data, in order to retrieve it we can traverse through all datafile and add the entries which haven&rsquo;t expired yet. The problem with this approach is that, there can be thousands of datafiles, millions of entries; Hence, we do something called a <strong>merge</strong>. At frequent intervals of time (probably when the kv store isnt very active or when idle), we merge and squash the inactive datafiles so that each inactive datafile will contain unexpired entries.</p>
+<p>When merging, the new inactive datafile being created can exceed the threshold size; Hence, multiple inactive datafiles are created until needed. But definitely, the number of inactive datafiles after merging will either be equal or decreased.</p>
+<p>Inorder to make things more faster, a hintfile is created for each inactive datafile. This hintfile will have the keys, and the location of value and size of the value so that its faster to navigate.</p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
+
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+})();
+</script></body>
+
+</html>

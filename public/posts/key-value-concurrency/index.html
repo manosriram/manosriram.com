@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Handling concurrency in KeyValue stores | Mano Sriram</title>
+<meta name="title" content="Handling concurrency in KeyValue stores" />
+<meta name="description" content="Concurrency in golang using Locks" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/key-value-concurrency/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Handling concurrency in KeyValue stores">
+  <meta property="og:description" content="Concurrency in golang using Locks">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-12-10T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Handling concurrency in KeyValue stores">
+  <meta name="twitter:description" content="Concurrency in golang using Locks">
+
+
+
+
+  <meta itemprop="name" content="Handling concurrency in KeyValue stores">
+  <meta itemprop="description" content="Concurrency in golang using Locks">
+  <meta itemprop="datePublished" content="2023-12-10T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-10T00:00:00+00:00">
+  <meta itemprop="wordCount" content="304">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <p>Key value stores might seem simple from outer view. We set and get the values which I thought the same. However, things get tricky as we dive deep. The problem is that, what happens if few processes write a key at the same time, and few processes read the same key.</p>
+<p>We can actually simulate this using <code>goroutines</code> in golang.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">numGoRoutines</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">wg</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">numGoRoutines</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">numGoRoutines</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">kv</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">nimbusdb</span>.<span style="color:#a6e22e">KeyValuePair</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Key</span>:   []byte(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#a6e22e">i</span>)),
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Value</span>: []byte(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;testvalue%d&#34;</span>, <span style="color:#a6e22e">i</span>)),
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">writtenKvPair</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Set</span>(<span style="color:#a6e22e">kv</span>)
+</span></span><span style="display:flex;"><span>	}()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span></code></pre></div><p>The above code creates 1000 goroutines each setting a different value. But, the problem is that multiple go routines can touch the variable where the keyvalue pairs are stored. Why is that a problem? Because we want to be 100% sure that only one process is using the variable at a given moment, which you might have guessed that we&rsquo;ll use locks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BTree</span>) <span style="color:#a6e22e">Set</span>(<span style="color:#a6e22e">key</span> []<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">value</span> <span style="color:#a6e22e">KeyDirValue</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">KeyDirValue</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tree</span>.<span style="color:#a6e22e">ReplaceOrInsert</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">item</span>{<span style="color:#a6e22e">key</span>: <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">v</span>: <span style="color:#a6e22e">value</span>})
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">i</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">item</span>).<span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>b.mu</code> is of type <code>sync.RWMutex</code> meaning it has both shared and exclusive locks available. In the Set function above we use <code>.Lock()</code> which means it is a exclusive lock. Any other goroutine cannot access the region until we call <code>.Unlock()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">BTree</span>) <span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">key</span> []<span style="color:#66d9ef">byte</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">KeyDirValue</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">RLock</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">RUnlock</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">tree</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">item</span>{<span style="color:#a6e22e">key</span>: <span style="color:#a6e22e">key</span>})
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">i</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">item</span>).<span style="color:#a6e22e">v</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>However, in the <code>.Get()</code> function,  we use <code>.RLock()</code> since we allow multiple process reading a value.</p>
+<p>This command <code>go test ./tests -v --race</code> can be run to check for race conditions.</p>
+<p>The above code is from a key-value store which I&rsquo;m writing from scratch. You can find it <a href="https://github.com/manosriram/nimbusdb">here</a></p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
+
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+})();
+</script></body>
+
+</html>

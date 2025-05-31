@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mano Sriram</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Mano Sriram</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How i make use of LLMs</title>
+      <link>http://localhost:1313/posts/llm/</link>
+      <pubDate>Wed, 23 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/llm/</guid>
+      <description>&lt;p&gt;Frequency of the use of LLMs have increased a lot for me in the past year specifically. I use claude as my daily driver. I do not pay for the pro plan, but I do have API credits to work with which I am going to talk about.&lt;/p&gt;&#xA;&lt;h3 id=&#34;aider&#34;&gt;Aider&lt;/h3&gt;&#xA;&lt;p&gt;Recently discovered this tool to interact locally using codebases. This works great for me. Its very convenient to use llms from the terminal.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building an homelab with Raspberry Pi 4</title>
+      <link>http://localhost:1313/posts/homelab/</link>
+      <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/homelab/</guid>
+      <description>&lt;p&gt;I have been thinking about building a home lab for myself for a few months and finally bought a Raspberry Pi 4 (8 GB—model B) this week, inspired by &lt;a href=&#34;https://thorstenball.com/&#34;&gt;Thorsten Ball&lt;/a&gt; and &lt;a href=&#34;https://x.com/manosriram/status/1871115922397958626&#34;&gt;this little conversation&lt;/a&gt;. My goal is to experiment and also selfhost few things myself.&lt;/p&gt;&#xA;&lt;p&gt;First things first, I installed Raspbian Lite OS without desktop since that might be a overhead and not worth it for my requirements.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://x.com/manosriram/status/1880236800272408761&#34;&gt;Thanks again Thorsten!&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Abstract syntax trees</title>
+      <link>http://localhost:1313/posts/abstract-syntax-trees/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/abstract-syntax-trees/</guid>
+      <description>&lt;p&gt;ASTs are a representation of the code. It converts a bunch of meaningless tokens into a tree which represents the code.&#xA;When the code is seen in the form of tree, multiple usecases arise such as:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Static code analysis - Analyze and find issues in code without executing.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Transform code - ASTs can be used to transform code to some other form.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;We will try to create an AST for the expression &amp;lsquo;1 + 2 * 3&amp;rsquo;. Since this is a single expression, there will be one node. If there are multiple expressions and statements, we store them separately&#xA;in a list and execute them separately.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Making time to learn software design patterns</title>
+      <link>http://localhost:1313/posts/design-patterns/</link>
+      <pubDate>Sun, 28 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design-patterns/</guid>
+      <description>&lt;p&gt;Inorder to write well structured, extensible, and readable code - design patterns help. I have recently started to read and follow more on this path. Until now, I didn&amp;rsquo;t care much about these patterns (although some design patterns are just patterns we do frequently without knowing).&lt;/p&gt;&#xA;&lt;p&gt;In 1994, 4 people came together to write the book &lt;code&gt;Design Patterns: Elements of Reusable Object-Oriented Software&lt;/code&gt;. It became a standard for the design patterns and since then the book was also called as &lt;code&gt;The gang-of-four(gof) book&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Writing an Interpreter by Hand</title>
+      <link>http://localhost:1313/posts/writing-an-interpreter/</link>
+      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/writing-an-interpreter/</guid>
+      <description>&lt;p&gt;Since I started writing code, I have always wondered how interpreters and compilers work, even though I took a compiler design class in college. However, I had never practically worked on anything related to it.&lt;/p&gt;&#xA;&lt;p&gt;A few days ago, the thought of writing my own language hit me. The next thing I did was open my laptop and write a simple parser to parse &lt;code&gt;1+2;&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This was going to be a recursive descent parser.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Understanding Parsers and Interpreters</title>
+      <link>http://localhost:1313/posts/parsers-and-interpreters/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/parsers-and-interpreters/</guid>
+      <description>&lt;h3 id=&#34;parsers-and-interpreters&#34;&gt;Parsers and Interpreters&lt;/h3&gt;&#xA;&lt;p&gt;I have always been fascinated by how compilers and interpreters worked. It seemed like a very complex piece of technology (and it is), giving me a hard time getting started. Having gone through a few blogs and a couple of books like &amp;ldquo;Writing an Interpreter in Go&amp;rdquo;, I realized it isn&amp;rsquo;t the end goal that I wanted - creating a language for example.&lt;/p&gt;&#xA;&lt;p&gt;I loved the internal process of interpreters converting text into a working machine. I wanted to learn that and although the books and previous blogs did a good job of explaining the basics, I wanted more. I started to look for articles to understand the basics right.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RabbitMQ #1: Understanding RabbitMQ</title>
+      <link>http://localhost:1313/posts/rabbitmq-p1/</link>
+      <pubDate>Sun, 25 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rabbitmq-p1/</guid>
+      <description>&lt;p&gt;RabbitMQ is a popular message broker. For some time, i have been working on the same but something didn&amp;rsquo;t sit in my mind. So, i got back to the basics and started from scratch again.&#xA;This blog will try to cover how RabbitMQ works and the basics.&lt;/p&gt;&#xA;&lt;h2 id=&#34;basics-of-rabbitmq&#34;&gt;Basics of RabbitMQ&lt;/h2&gt;&#xA;&lt;p&gt;There are few terms which are needed to understand how Rabbitmq works.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Queue&lt;/li&gt;&#xA;&lt;li&gt;Exchange&lt;/li&gt;&#xA;&lt;li&gt;Producer&lt;/li&gt;&#xA;&lt;li&gt;Consumer&lt;/li&gt;&#xA;&lt;li&gt;Bind&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;queue&#34;&gt;Queue&lt;/h4&gt;&#xA;&lt;p&gt;Queue is the place where messages are sent. Messages are enqueued/dequeued from the queue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Handling concurrency in KeyValue stores</title>
+      <link>http://localhost:1313/posts/key-value-concurrency/</link>
+      <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/key-value-concurrency/</guid>
+      <description>&lt;p&gt;Key value stores might seem simple from outer view. We set and get the values which I thought the same. However, things get tricky as we dive deep. The problem is that, what happens if few processes write a key at the same time, and few processes read the same key.&lt;/p&gt;&#xA;&lt;p&gt;We can actually simulate this using &lt;code&gt;goroutines&lt;/code&gt; in golang.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;numGoRoutines&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;wg&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sync&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;WaitGroup&lt;/span&gt;{}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;wg&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;numGoRoutines&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#a6e22e&#34;&gt;numGoRoutines&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;kv&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;nimbusdb&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;KeyValuePair&lt;/span&gt;{&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Key&lt;/span&gt;:   []byte(&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Sprintf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;)),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;: []byte(&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Sprintf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;testvalue%d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;)),&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;go&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;wg&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Done&lt;/span&gt;()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;writtenKvPair&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Set&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;kv&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;}()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;wg&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Wait&lt;/span&gt;()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above code creates 1000 goroutines each setting a different value. But, the problem is that multiple go routines can touch the variable where the keyvalue pairs are stored. Why is that a problem? Because we want to be 100% sure that only one process is using the variable at a given moment, which you might have guessed that we&amp;rsquo;ll use locks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Key Value Store internals</title>
+      <link>http://localhost:1313/posts/key-value-stores/</link>
+      <pubDate>Thu, 23 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/key-value-stores/</guid>
+      <description>&lt;h1 id=&#34;key-value-store-and-a-cache&#34;&gt;Key Value store and a Cache&lt;/h1&gt;&#xA;&lt;p&gt;Doesn&amp;rsquo;t Cache use key value to store objects? Then why do we need a key value store?&lt;/p&gt;&#xA;&lt;p&gt;The answer is simple, persistence.&#xA;A key-value store is a database but instead of tables and other complex stuff, we simply use a key value structure. Cache&amp;rsquo;s main purpose is to increase read performance.&#xA;Anything you think doesnt change that often, you can cache it. Whereas, KV store focuses more on writes along with reads.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Neovim vs VSCode</title>
+      <link>http://localhost:1313/posts/nvim-vs-vscode/</link>
+      <pubDate>Fri, 30 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/nvim-vs-vscode/</guid>
+      <description>&lt;p&gt;My development setup is Tmux + Neovim + Alacritty.&lt;/p&gt;&#xA;&lt;p&gt;Tmux is a terminal multiplexer. We can split, rearrange, create multiple terminal panes. Also, you can create multiple tmux sessions.&lt;/p&gt;&#xA;&lt;p&gt;Alacritty is a GPU based Terminal emulator. It is really fast, maybe since it is written in Rust.&lt;/p&gt;&#xA;&lt;p&gt;Neovim is a fork of Vim, and written in Lua. Here is a &lt;a href=&#34;https://github.com/manosriram/Dot-Files/tree/master/nvim&#34;&gt;link&lt;/a&gt; to my neovim config if needed.&lt;/p&gt;&#xA;&lt;h3 id=&#34;neovim-vs-vscode&#34;&gt;(Neo)Vim vs VSCode&lt;/h3&gt;&#xA;&lt;p&gt;I used to use VSCode quite a while ago. There are many reasons why its the most used editor by developers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Implementing Authorization using Casbin. Introduction to Casbin RBAC</title>
+      <link>http://localhost:1313/posts/casbin-rbac/</link>
+      <pubDate>Wed, 21 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/casbin-rbac/</guid>
+      <description>&lt;p&gt;Casbin is a library used to implement authorization of different kinds. It simplifies the implementation of roles and permissions in general and it does provide out of box useful methods. Casbin uses some entities inorder to define roles and permissions.&lt;/p&gt;&#xA;&lt;p&gt;As you can see, there are different types of authorization models we can use depending on the usecase.&lt;/p&gt;&#xA;&lt;p&gt;Model is where we define few parameters on which casbin decides whether to allow or deny the request. There are 4 main entities.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PiedPiper scalability issues</title>
+      <link>http://localhost:1313/posts/pied-piper-scalability/</link>
+      <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/pied-piper-scalability/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;In the episode, there were 5 things they said out loud.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Compress the Manifests: Dinesh&#xA;A Manifest is a file that contains information required by the video (Title, Description, Captions, Adaptive Bitrate Info, etc…). A Video usually has one master and many rendition manifest files (the smaller the file size, the better).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Hence, Dinesh tried to decrease the manifest file sizes by compressing them (probably using the algorithm Richard wrote)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

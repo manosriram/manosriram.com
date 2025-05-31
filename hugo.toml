@@ -1,0 +1,25 @@
+baseURL = 'https://manosriram.com/'
+languageCode = 'en-us'
+title = 'Mano Sriram'
+theme = 'hugo-bearblog'
+
+[[menu.main]]
+  name = "home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "blog"
+  url = "/posts/"
+  weight = 2
+
+[[menu.main]]
+  name = "resume"
+  url = "/resume.pdf"
+  weight = 3
+
+[params]
+  description = "My Internet home"
+  author = "Mano Sriram"
+  hideMadeWithLine = true
+  favicon = "favicon.svg"

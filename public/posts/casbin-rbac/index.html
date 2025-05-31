@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Implementing Authorization using Casbin. Introduction to Casbin RBAC | Mano Sriram</title>
+<meta name="title" content="Implementing Authorization using Casbin. Introduction to Casbin RBAC" />
+<meta name="description" content="Intro to Casbin RBAC and authorization rules, policies" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/casbin-rbac/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Implementing Authorization using Casbin. Introduction to Casbin RBAC">
+  <meta property="og:description" content="Intro to Casbin RBAC and authorization rules, policies">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-21T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Implementing Authorization using Casbin. Introduction to Casbin RBAC">
+  <meta name="twitter:description" content="Intro to Casbin RBAC and authorization rules, policies">
+
+
+
+
+  <meta itemprop="name" content="Implementing Authorization using Casbin. Introduction to Casbin RBAC">
+  <meta itemprop="description" content="Intro to Casbin RBAC and authorization rules, policies">
+  <meta itemprop="datePublished" content="2023-06-21T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-06-21T00:00:00+00:00">
+  <meta itemprop="wordCount" content="854">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <p>Casbin is a library used to implement authorization of different kinds. It simplifies the implementation of roles and permissions in general and it does provide out of box useful methods. Casbin uses some entities inorder to define roles and permissions.</p>
+<p>As you can see, there are different types of authorization models we can use depending on the usecase.</p>
+<p>Model is where we define few parameters on which casbin decides whether to allow or deny the request. There are 4 main entities.</p>
+<ol>
+<li><strong>request_definition</strong>: Used to define what a request is going to look like.
+Example: <code>r = sub, obj, act</code> which means the request will contain 3 arguments: subject, object, action
+usually,
+<ul>
+<li><strong>subject</strong> is the person requesting</li>
+<li><strong>object</strong> is what the person wants to access</li>
+<li><strong>action</strong> is what the person wants to do to the object (read, write, update, etc&hellip;)</li>
+</ul>
+</li>
+<li><strong>policy_definition</strong>: Used to define how a policy is going to look like. This policy will be defined in a separate file. We are just declaring the arguments for the policy here.
+Example: <code>p = sub, obj, act</code></li>
+<li><strong>policy_effect</strong>: Its the condition(s) used to make a decision of allowing/denying the subject to take action on the object.
+Example: <code>e = some(where (p.eft == allow))</code></li>
+<li><strong>matchers</strong>: Used to match the policy, request to the policy definitions.
+Example: <code>m = r.sub == p.sub &amp;&amp; r.obj == p.obj &amp;&amp; r.act == p.act</code>
+In the above example, we are comparing the request&rsquo;s subject to subject in the policy and a couple of similar comparisions.</li>
+</ol>
+<p>Policy is one of the main entities of Casbin. It is where we define who has access to what and more. Above, there is an example where we do
+<code>r.sub == p.sub</code>. This means that casbin checks if there is any match for the requests&rsquo;s subject and policy&rsquo;s subject. It basically
+says that the subject or the person requesting should have entry in the policy definition.
+Example of a policy file:</p>
+<pre tabindex="0"><code>p, alice, data1, read
+p, bob, data2, write
+</code></pre><p>here, the first letter is to map the line to policy definition <code>p</code> which we defined in the model above. Hence, this line should have 3 arguments.
+In the above example,</p>
+<pre tabindex="0"><code>alice -&gt; subject
+data1 -&gt; objects
+read -&gt; action
+</code></pre><p>Use <a href="https://casbin.org/editor">casbin online editor</a> to try out different types of models and policies.</p>
+<h4 id="rbac-role-based-access-control-with-domains">RBAC (Role Based Access Control) with domains</h4>
+<p>To take an example, AWS. You have organizations, and users each having different permissions and roles. You can login to different organizations with the same email.</p>
+<p>Lets define the 4 entities how we did above, but with some outcome.</p>
+<h4 id="request_definition">request_definition</h4>
+<p>Here, lets say email is the primary key, so we&rsquo;ll use that to identify the user.</p>
+<pre tabindex="0"><code>[request_definition]
+r = sub, org, obj, act
+</code></pre><p>We&rsquo;re taking 4 args this time with the request. <code>org</code> is the added arg along with previous ones. It stands for organization (we can name whatever we want, it does not matter). Since, we need to know which org this request wants to access; we take it as request arg.</p>
+<h4 id="policy_definition">policy_definition</h4>
+<pre tabindex="0"><code>[policy_definition]
+p = sub, obj, act
+</code></pre><p>This is same as previous example. we only take 3 policy args.</p>
+<h4 id="role_definition">role_definition</h4>
+<pre tabindex="0"><code>[role_definition]
+g = _, _, _
+g2 = _, _, _
+</code></pre><p>This looks weird, but we&rsquo;ll find this useful when we know what exactly this does. <code>g</code> and <code>g2</code> stands for grouping.
+If we boil down the input and output, we just want to know if a user of some org can access a particular entity.</p>
+<h4 id="policy_effect-and-matchers">policy_effect and matchers</h4>
+<pre tabindex="0"><code>[policy_effect]
+e = some(where (p.eft == allow))
+
+[matchers]
+m = g(r.sub, p.sub, r.org) &amp;&amp; g2(r.sub, r.org, &#34;joined&#34;) &amp;&amp; r.obj == p.obj &amp;&amp; r.act == p.act
+</code></pre><p>In the matcher, we have 4 checks.</p>
+<ol>
+<li>
+<p><code>g(r.sub, p.sub, r.org)</code>: It checks if there is a group with request&rsquo;s subject, policys&rsquo;s subject and requests&rsquo;s org in the same line.
+For example: <code>g, alice, admin, org_1</code>. This check returns true iff <code>r.sub == alice</code>, <code>p.sub == admin</code>, and <code>r.org == org_1</code>
+This <code>g, alice, admin, domain1</code> will be defined in a separate policy file.</p>
+</li>
+<li>
+<p><code>g2(r.sub, r.org, joined)</code>: This is similar to the above group, just the name differs.
+For example: <code>g2, mano, org_1, joined</code>. This check returns true iff <code>r.sub == mano</code>, <code>r.org == org_1</code>, and the 3rd argument must be <code>joined = joined</code>.</p>
+</li>
+<li>
+<p><code>r.obj == p.obj</code>: it sees if requests&rsquo;s object matches policy&rsquo;s object.
+For example,
+<code>p, admin, profile, read</code> is the policy def (profile is the obj here)
+<code>r, mano, org_1, profile, read</code> is the request (profile is the obj here)
+Hence, the objects match; this should return <code>true</code>.</p>
+</li>
+<li>
+<p><code>r.act == p.act</code>: it similar to the above check, verifying if the actions match.</p>
+</li>
+</ol>
+<p>If these 4 checks pass, casbin allows or return true for the request. This is called <code>enforcing</code> and casbin uses <code>enforcer</code> to check if the request matches with the policies.</p>
+<p>This is just a small example. We can configure our own rules in a more complex way according to our requirements.</p>
+<p>By default, policies are stored in <code>policy.csv</code> file (since it is also separated using commas). Although Casbin provides adapters to use database instead of a file to store the model and policy.</p>
+<h4 id="refs">Refs:</h4>
+<ul>
+<li><a href="https://casbin.org/editor">https://casbin.org/editor</a></li>
+<li><a href="https://casbin.org/docs/how-it-works">https://casbin.org/docs/how-it-works</a></li>
+</ul>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
+
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+})();
+</script></body>
+
+</html>

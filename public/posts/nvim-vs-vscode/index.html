@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Neovim vs VSCode | Mano Sriram</title>
+<meta name="title" content="Neovim vs VSCode" />
+<meta name="description" content="Editor wars - VSCode/Neovim" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/nvim-vs-vscode/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Neovim vs VSCode">
+  <meta property="og:description" content="Editor wars - VSCode/Neovim">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-30T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Neovim vs VSCode">
+  <meta name="twitter:description" content="Editor wars - VSCode/Neovim">
+
+
+
+
+  <meta itemprop="name" content="Neovim vs VSCode">
+  <meta itemprop="description" content="Editor wars - VSCode/Neovim">
+  <meta itemprop="datePublished" content="2023-06-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-06-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="437">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <p>My development setup is Tmux + Neovim + Alacritty.</p>
+<p>Tmux is a terminal multiplexer. We can split, rearrange, create multiple terminal panes. Also, you can create multiple tmux sessions.</p>
+<p>Alacritty is a GPU based Terminal emulator. It is really fast, maybe since it is written in Rust.</p>
+<p>Neovim is a fork of Vim, and written in Lua. Here is a <a href="https://github.com/manosriram/Dot-Files/tree/master/nvim">link</a> to my neovim config if needed.</p>
+<h3 id="neovim-vs-vscode">(Neo)Vim vs VSCode</h3>
+<p>I used to use VSCode quite a while ago. There are many reasons why its the most used editor by developers.</p>
+<ul>
+<li>
+<p>Plugins: Plugins is one of the main reasons to use VSCode. It has lots of useful plugins. Every major dev tool probably has a VSCode plugin.
+Docker, Git, Vim, and even Neovim (Although Vim plugin is an emulator while Neovim plugin is embedded directly with its API)</p>
+</li>
+<li>
+<p>Debugger: This is the top reason why I sometimes use VSCode for. It simplifies debugging too much and is very useful. If not for VSCode, we&rsquo;ll have to use cli tools like gdb or lldb; which for a debugger is very hard to keep track.</p>
+</li>
+<li>
+<p>Customization: Customization might be less compared to Neovim. But, you can customize things you need. Since, Neovim uses config for every small thing it does, it is difficult to get things running when you&rsquo;re starting. But it is not the case with VSCode. You can many things out of the box the first time you run it.</p>
+</li>
+</ul>
+<p>Now, the things which I don&rsquo;t like very much.</p>
+<ul>
+<li>
+<p>Bloated: VSCode is bloated. This is a fact and everyone knows it since is uses Electron. Atom used electron and VSCode does too. The downside of using an Electron application is that it consumes too much of RAM. Because of this, the startup times are much higher. Neovim (or Vim or Emacs) starts up in less than a second sometimes. Since, it does not use javascript underneath, it is much faster and less bloated. Plugins used by neovim or similar text editors may use javascript and might cause high startup times if not taken care of.</p>
+</li>
+<li>
+<p>Data: I am genuinely concerned if Microsoft uses my data to train Github Copilot (it does with Github, i am not sure with vscode)</p>
+</li>
+<li>
+<p>Not Terminal Based: Another minor thing is that it is not terminal based. This might not apply to everyone, but personally I like working from the terminal. I feel its where the job is done and you learn a lot when you start using terminals all the time, since you have to learn commands.</p>
+</li>
+</ul>
+<p>Everyone have their own preferences. For me, its VSCode&rsquo;s debugger + Neovim&rsquo;s text editing.</p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
+
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+})();
+</script></body>
+
+</html>

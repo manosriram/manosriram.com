@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Making time to learn software design patterns | Mano Sriram</title>
+<meta name="title" content="Making time to learn software design patterns" />
+<meta name="description" content="Exploring different design patterns in Python" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/design-patterns/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Making time to learn software design patterns">
+  <meta property="og:description" content="Exploring different design patterns in Python">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-28T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Making time to learn software design patterns">
+  <meta name="twitter:description" content="Exploring different design patterns in Python">
+
+
+
+
+  <meta itemprop="name" content="Making time to learn software design patterns">
+  <meta itemprop="description" content="Exploring different design patterns in Python">
+  <meta itemprop="datePublished" content="2024-07-28T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-07-28T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1190">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <p>Inorder to write well structured, extensible, and readable code - design patterns help. I have recently started to read and follow more on this path. Until now, I didn&rsquo;t care much about these patterns (although some design patterns are just patterns we do frequently without knowing).</p>
+<p>In 1994, 4 people came together to write the book <code>Design Patterns: Elements of Reusable Object-Oriented Software</code>. It became a standard for the design patterns and since then the book was also called as <code>The gang-of-four(gof) book</code>.</p>
+<p>Before patterns, there are different types of patterns:</p>
+<ol>
+<li>Creational Patterns: Patterns used to create classes/objects</li>
+<li>Structural Patterns: Patterns used to connect different objects/classes</li>
+<li>Behavioural Patterns: Patterns to take care of communication and responsibility between objects/classes</li>
+</ol>
+<h2 id="creational-patterns">Creational Patterns</h2>
+<h4 id="factory">Factory</h4>
+<p>Factory pattern is used to create objects instead of directly creating objects. This can be extended to create different types of objects.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Factory</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserFactory</span>(Factory):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> User()
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostFactory</span>(Factory):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Post()
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>user_factory <span style="color:#f92672">=</span> UserFactory()
+</span></span><span style="display:flex;"><span>user1 <span style="color:#f92672">=</span> user_factory<span style="color:#f92672">.</span>create()
+</span></span><span style="display:flex;"><span>user2 <span style="color:#f92672">=</span> user_factory<span style="color:#f92672">.</span>create()
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>post_factory <span style="color:#f92672">=</span> PostFactory()
+</span></span><span style="display:flex;"><span>post1 <span style="color:#f92672">=</span> post_factory<span style="color:#f92672">.</span>create()
+</span></span><span style="display:flex;"><span>post2 <span style="color:#f92672">=</span> post_factory<span style="color:#f92672">.</span>create()
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>Factory, Abstract factory, Simple factory, etc&hellip; are nearly same. Read <a href="https://refactoring.guru/design-patterns/factory-method/python/example">this</a> to find out the differences.</p>
+<h4 id="singleton">Singleton</h4>
+<p>Every time a class is called, an object is created. Singleton pattern is used to use a single object for the class however many times it is called.</p>
+<p>This can be achieved by overriding the <code>__call__</code> method in python. We maintain a global instance object and see if its None or not None.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DatabaseConnectionSingleton</span>:
+</span></span><span style="display:flex;"><span>    _instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __call__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> DatabaseConnectionSingleton<span style="color:#f92672">.</span>_instance <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            DatabaseConnectionSingleton<span style="color:#f92672">.</span>_instance <span style="color:#f92672">=</span> self
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> DatabaseConnectionSingleton<span style="color:#f92672">.</span>_instance
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>db_conn1 <span style="color:#f92672">=</span> DatabaseConnectionSingleton()
+</span></span><span style="display:flex;"><span>db_conn2 <span style="color:#f92672">=</span> DatabaseConnectionSingleton()
+</span></span><span style="display:flex;"><span>print(db_conn1 <span style="color:#f92672">==</span> db_conn2) <span style="color:#75715e"># True, since its a singleton class</span>
+</span></span></code></pre></div><h4 id="builder">Builder</h4>
+<p>Instead of having a class which returns an object with completely arranged pieces, builder class has methods for individual parts which can be used by the objects.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ComputerBuilder</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_monitor</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_cpu</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_mouse</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PCBuilder</span>(ComputerBuilder):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_monitor</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;attaching monitor to PC&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_cpu</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;attaching cpu to PC&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_keyboard</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;attaching keyboard to PC&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach_mouse</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;attaching mouse to PC&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Director</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">builder</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_builder
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@builder.setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">builder</span>(self, builder):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder <span style="color:#f92672">=</span> builder
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_single_monitor_pc</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_monitor()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_cpu()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_keyboard()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_mouse()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_multi_monitor_pc</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_monitor()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_monitor()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_monitor()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_cpu()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_keyboard()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder<span style="color:#f92672">.</span>attach_mouse()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>builder <span style="color:#f92672">=</span> ComputerBuilder()
+</span></span><span style="display:flex;"><span>director <span style="color:#f92672">=</span> Director()
+</span></span><span style="display:flex;"><span>director<span style="color:#f92672">.</span>builder <span style="color:#f92672">=</span> builder
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>director<span style="color:#f92672">.</span>build_single_monitor_pc()
+</span></span><span style="display:flex;"><span>director<span style="color:#f92672">.</span>build_multi_monitor_pc()
+</span></span></code></pre></div><p>Here, we have a <code>ComputerBuilder</code> abstract base class. Using this, we build using the <code>PCBuilder</code> to build PCs with multiple configurations. Finally, the <code>Director</code> class is used in builder patterns to handle the assembling of parts. We have 2 methods <code>build_single_monitor_pc</code> and <code>build_multi_monitor_pc</code> using the builder.</p>
+<p>Then, we use the director to build single monitor pc and multi monitor pc using the same builder class.</p>
+<h2 id="structural-patterns">Structural Patterns</h2>
+<h4 id="adapter-pattern">Adapter Pattern</h4>
+<p>Adapter pattern is used to connect old/incompatible classes with required usecases. For example, there is a old class <code>OldClass</code> which has a <code>call_specific_api_and_get_weather_data</code> method.
+But, the response from this method is much different than the latest classes use. We do not want to modify this <code>OldClass</code> since it might break something.</p>
+<p>Hence we add a adapter inbetween to translate the response from the OldClass method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OldClass</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">call_specific_api_and_get_weather_data</span>(self, city):
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;result&#34;</span>: { <span style="color:#e6db74">&#34;city&#34;</span>: <span style="color:#e6db74">&#34;city1&#34;</span>, <span style="color:#e6db74">&#34;weather&#34;</span>: {<span style="color:#f92672">...</span>} } }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LatestClass</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">request_weather</span>(self, city):
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { <span style="color:#e6db74">&#34;city&#34;</span>: <span style="color:#e6db74">&#34;city1&#34;</span>, <span style="color:#e6db74">&#34;weather&#34;</span>: <span style="color:#e6db74">&#34;25 C&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WeatherAdapter</span>(OldClass, LatestClass):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">request_weather</span>(self, city):
+</span></span><span style="display:flex;"><span>        old_response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>call_specific_api_and_get_weather_data(city)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { <span style="color:#e6db74">&#34;city&#34;</span>: city, <span style="color:#e6db74">&#34;weather&#34;</span>: old_response<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;result&#34;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;weather&#34;</span>) }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">caller</span>(target, city):
+</span></span><span style="display:flex;"><span>    target<span style="color:#f92672">.</span>request_weather(city)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>target <span style="color:#f92672">=</span> LatestClass()
+</span></span><span style="display:flex;"><span>adaptee <span style="color:#f92672">=</span> WeatherAdapter()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>caller(target, <span style="color:#e6db74">&#34;Chennai&#34;</span>)
+</span></span><span style="display:flex;"><span>caller(adaptee, <span style="color:#e6db74">&#34;Chennai&#34;</span>)
+</span></span></code></pre></div><p>We have converted the <code>OldClass</code> api response to something the client can understand.</p>
+<h4 id="facade-pattern">Facade Pattern</h4>
+<p>This pattern helps to do operations at a single place in a complex system with many interfaces, APIs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Facade</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, a, b):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_a <span style="color:#f92672">=</span> a
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_b <span style="color:#f92672">=</span> b
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_random_number</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_a<span style="color:#f92672">.</span>random() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>_b<span style="color:#f92672">.</span>random()
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rand(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rand(<span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> A()
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> B()
+</span></span><span style="display:flex;"><span>facade <span style="color:#f92672">=</span> Facade(a, b)
+</span></span><span style="display:flex;"><span>print(facade<span style="color:#f92672">.</span>process()) <span style="color:#75715e"># a.random() + b.random()</span>
+</span></span></code></pre></div><p>All the above code does is that: it adds 2 random numbers by calling <code>random()</code> function of those objects. Just that, in the <code>Facade</code> class we use the a and b objects to get a result.</p>
+<h2 id="behavioural-patterns">Behavioural Patterns</h2>
+<h4 id="command-pattern">Command Pattern</h4>
+<p>The Command pattern is used when one wants to do an operation but make it extensible use objects instead of directly doing the operation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Command</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorldCommand</span>(Command):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, name):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello, </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>HelloWorldCommand(<span style="color:#e6db74">&#34;python&#34;</span>)<span style="color:#f92672">.</span>execute() <span style="color:#75715e"># Hello, python</span>
+</span></span></code></pre></div><h4 id="strategy-pattern">Strategy Pattern</h4>
+<p>The Strategy pattern uses a context variable to interchange strategy whenever required.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaymentStrategy</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pay</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CreditCardPaymentStrategy</span>(PaymentStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pay</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Paying via credit card&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CashPaymentStrategy</span>(PaymentStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pay</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Paying via cash&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaymentContext</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, strategy: PaymentStrategy):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">strategy</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@strategy.setter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">strategy</span>(self, strategy: Strategy):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_strategy<span style="color:#f92672">.</span>pay()
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>context <span style="color:#f92672">=</span> PaymentContext(CashStrategy())
+</span></span><span style="display:flex;"><span>context<span style="color:#f92672">.</span>process() <span style="color:#75715e"># pay using cash</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>context<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> CreditCardPaymentStrategy()
+</span></span><span style="display:flex;"><span>context<span style="color:#f92672">.</span>process() <span style="color:#75715e"># pay using credit-card</span>
+</span></span></code></pre></div><h4 id="state-pattern">State Pattern</h4>
+<p>The State pattern is used when modifying the state of the class in-between. This is helpful when there are a lot of switch statements in the flow.</p>
+<p>For example, a Vending machine starts with an <code>IdleState</code>. When a coin is inserted, it moves to <code>HasCoinState</code>. The same actions will be available for both states, but the implementation depends on the logic of the application. Here, when the machine is in IdleState, we cannot dispatch the food whereas in HasCoinState, we can dispatch the food if there is required amount in the machine.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">State</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">insert_coin</span>(self, machine, amount):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">return_change</span>(self, machine):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_product</span>(self, machine, price):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IdleState</span>(State):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">insert_coin</span>(self, machine, amount):
+</span></span><span style="display:flex;"><span>        machine<span style="color:#f92672">.</span>amount <span style="color:#f92672">+=</span> amount
+</span></span><span style="display:flex;"><span>        machine<span style="color:#f92672">.</span>set_state(HasCoinState())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">return_change</span>(self, machine):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;No coins to return&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_product</span>(self, machine, price):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Add coins to select product&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HasCoinState</span>(State):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">insert_coin</span>(self, machine, amount):
+</span></span><span style="display:flex;"><span>        machine<span style="color:#f92672">.</span>amount <span style="color:#f92672">+=</span> amount
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">return_change</span>(self, machine):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> machine<span style="color:#f92672">.</span>amount
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_product</span>(self, machine, price):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> machine<span style="color:#f92672">.</span>amount <span style="color:#f92672">&lt;=</span> price:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;Selecting product&#34;</span>)
+</span></span><span style="display:flex;"><span>            machine<span style="color:#f92672">.</span>amount <span style="color:#f92672">=</span> price <span style="color:#f92672">-</span> machine<span style="color:#f92672">.</span>amount
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> machine<span style="color:#f92672">.</span>amount <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                machine<span style="color:#f92672">.</span>set_state(IdleState())
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Add </span><span style="color:#e6db74">{</span>price<span style="color:#f92672">-</span>machine<span style="color:#f92672">.</span>amount<span style="color:#e6db74">}</span><span style="color:#e6db74"> coins to select product&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VendingMachine</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state <span style="color:#f92672">=</span> IdleState()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>amount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_state</span>(self, state):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state <span style="color:#f92672">=</span> state
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">insert_coin</span>(self, amount):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>insert_coin(self, amount)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">select_product</span>(self, price):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>select_product(self, price)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">return_change</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>return_change(self)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> VendingMachine() <span style="color:#75715e"># IdleState</span>
+</span></span><span style="display:flex;"><span>v<span style="color:#f92672">.</span>insert_coin(<span style="color:#ae81ff">5</span>) <span style="color:#75715e"># HasCoinState</span>
+</span></span><span style="display:flex;"><span>v<span style="color:#f92672">.</span>insert_coin(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>v<span style="color:#f92672">.</span>select_product(<span style="color:#ae81ff">10</span>) <span style="color:#75715e"># IdleState, since machine.amount = 0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>v<span style="color:#f92672">.</span>return_change()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>v<span style="color:#f92672">.</span>select_product(<span style="color:#ae81ff">10</span>) <span style="color:#75715e"># no coins in the machine</span>
+</span></span></code></pre></div><h4 id="observer-pattern">Observer Pattern</h4>
+<p>As the name says, observer pattern is used to push updates/notifications to the registered observers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Observer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_observers <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach</span>(self, observer):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_observers<span style="color:#f92672">.</span>append(observer)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">detach</span>(self, observer):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_observers<span style="color:#f92672">.</span>remove(observer)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self, stock_name, stock_price):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> observer <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>_observers:
+</span></span><span style="display:flex;"><span>            observer<span style="color:#f92672">.</span>notify(stock_name, stock_price)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_and_update_stock_price</span>(self, stock_name):
+</span></span><span style="display:flex;"><span>        stock_price <span style="color:#f92672">=</span> api_response<span style="color:#f92672">.</span>get(stock_name)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>notify(stock_name, stock_price)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StockPriceObserver</span>(Observer):	
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">notify</span>(self, stock_name, stock_price):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Stock </span><span style="color:#e6db74">{stock_name}</span><span style="color:#e6db74"> updated with latest value </span><span style="color:#e6db74">{stock_price}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>observer <span style="color:#f92672">=</span> Observer()
+</span></span><span style="display:flex;"><span>stock_price_observer <span style="color:#f92672">=</span> StockPriceObserver()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>observer<span style="color:#f92672">.</span>attach(stock_price_observer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>	observer<span style="color:#f92672">.</span>get_and_update_stock_price()
+</span></span><span style="display:flex;"><span>	time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">10</span>)
+</span></span></code></pre></div><p>These are some the design patterns that exists - refer <a href="https://refactoring.guru/design-patterns">refactoring.guru</a> for more exhaustive list of patterns.</p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+}
+
+
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
+})();
+</script></body>
+
+</html>

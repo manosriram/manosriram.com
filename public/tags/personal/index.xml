@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Personal on Mano Sriram</title>
+    <link>http://localhost:1313/tags/personal/</link>
+    <description>Recent content in Personal on Mano Sriram</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 31 May 2025 07:15:50 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to My Blog</title>
+      <link>http://localhost:1313/posts/welcome/</link>
+      <pubDate>Sat, 31 May 2025 07:15:50 +0530</pubDate>
+      <guid>http://localhost:1313/posts/welcome/</guid>
+      <description>&lt;h1 id=&#34;welcome-to-my-blog&#34;&gt;Welcome to My Blog&lt;/h1&gt;&#xA;&lt;p&gt;Hello and welcome to my personal blog! This is my first post, and I&amp;rsquo;m excited to share my thoughts and experiences with you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-youll-find-here&#34;&gt;What You&amp;rsquo;ll Find Here&lt;/h2&gt;&#xA;&lt;p&gt;On this blog, I&amp;rsquo;ll be writing about:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Technology&lt;/strong&gt; - Programming tips, tools, and discoveries&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Learning&lt;/strong&gt; - My journey of continuous growth and education&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Projects&lt;/strong&gt; - Cool things I&amp;rsquo;m building and working on&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Life&lt;/strong&gt; - Random thoughts and experiences worth sharing&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;a-little-about-me&#34;&gt;A Little About Me&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;m passionate about technology and always curious about how things work. I believe in the power of sharing knowledge and learning from others.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

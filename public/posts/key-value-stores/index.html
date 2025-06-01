@@ -295,7 +295,7 @@ function toggleTheme() {
 }
 
 
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
@@ -304,7 +304,7 @@ function toggleTheme() {
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
   }
-})();
+});
 </script></body>
 
 </html>

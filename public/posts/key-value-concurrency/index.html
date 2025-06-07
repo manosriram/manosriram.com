@@ -251,7 +251,7 @@
 
 <a href="/resume.pdf">resume</a>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+<button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></nav>
 </header>
   <main>
 
@@ -309,7 +309,7 @@
   <script>
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.getAttribute('data-theme');
+  const currentTheme = body.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   body.setAttribute('data-theme', newTheme);
@@ -317,11 +317,12 @@ function toggleTheme() {
   
   
   const button = document.querySelector('.theme-toggle');
-  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
@@ -329,8 +330,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    button.addEventListener('click', toggleTheme);
+  } else {
+    
+    setTimeout(initializeTheme, 100);
   }
-});
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
 </script></body>
 
 </html>

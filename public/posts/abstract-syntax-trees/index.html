@@ -251,7 +251,7 @@
 
 <a href="/resume.pdf">resume</a>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+<button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></nav>
 </header>
   <main>
 
@@ -313,24 +313,24 @@ is not a MULTIPLY token.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">from</span> tokenize <span style="color:#f92672">import</span> TokenType, Tokenizer <span style="color:#75715e"># refer https://github.com/manosriram/ast/blob/main/tokenize.py</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AST</span>(object):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">pass</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Literal</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, token) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, token) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>type <span style="color:#f92672">=</span> token<span style="color:#f92672">.</span>type
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>value <span style="color:#f92672">=</span> token<span style="color:#f92672">.</span>value
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BinOp</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, left, op, right) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, left, op, right) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>left <span style="color:#f92672">=</span> left
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>op <span style="color:#f92672">=</span> op
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>right <span style="color:#f92672">=</span> right
 </span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>tree <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AstBuilder</span>(AST):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, tokens) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, tokens) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>position <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>tokens <span style="color:#f92672">=</span> tokens
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>current_token <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tokens[self<span style="color:#f92672">.</span>position] <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>tokens) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>
@@ -441,7 +441,7 @@ printing.</p>
   <script>
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.getAttribute('data-theme');
+  const currentTheme = body.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   body.setAttribute('data-theme', newTheme);
@@ -449,11 +449,12 @@ function toggleTheme() {
   
   
   const button = document.querySelector('.theme-toggle');
-  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
@@ -461,8 +462,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    button.addEventListener('click', toggleTheme);
+  } else {
+    
+    setTimeout(initializeTheme, 100);
   }
-});
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
 </script></body>
 
 </html>

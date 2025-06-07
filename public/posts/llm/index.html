@@ -251,7 +251,7 @@
 
 <a href="/resume.pdf">resume</a>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+<button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></nav>
 </header>
   <main>
 
@@ -270,10 +270,10 @@
 <p><code>/think-tokens &lt;count&gt;</code> Set the number of output tokens (to limit tokens to restrict credits consumption)</p>
 <h3 id="chat-modes">Chat modes</h3>
 <p>There are 3 chat modes included above:</p>
-<pre tabindex="0"><code>/code
-/ask
-/architect
-</code></pre><h3 id="getting-started">Getting started</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">/code</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">/ask</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">/architect</span>
+</span></span></code></pre></div><h3 id="getting-started">Getting started</h3>
 <p><code>aider --anthropic-api-key=$anthropic_key --no-auto-commits --dark-mode</code></p>
 <p>This starts aider with no auto commits and dark mode. This is for anthropic (claude).</p>
 <h4 id="references">References:</h4>
@@ -293,7 +293,7 @@
   <script>
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.getAttribute('data-theme');
+  const currentTheme = body.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   body.setAttribute('data-theme', newTheme);
@@ -301,11 +301,12 @@ function toggleTheme() {
   
   
   const button = document.querySelector('.theme-toggle');
-  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
@@ -313,8 +314,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    button.addEventListener('click', toggleTheme);
+  } else {
+    
+    setTimeout(initializeTheme, 100);
   }
-});
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
 </script></body>
 
 </html>

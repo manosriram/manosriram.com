@@ -251,7 +251,7 @@
 
 <a href="/resume.pdf">resume</a>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></nav>
+<button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></nav>
 </header>
   <main>
 
@@ -298,7 +298,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DatabaseConnectionSingleton</span>:
 </span></span><span style="display:flex;"><span>    _instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __call__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__call__</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> DatabaseConnectionSingleton<span style="color:#f92672">.</span>_instance <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
 </span></span><span style="display:flex;"><span>            DatabaseConnectionSingleton<span style="color:#f92672">.</span>_instance <span style="color:#f92672">=</span> self
 </span></span><span style="display:flex;"><span>
@@ -342,7 +342,7 @@
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;attaching mouse to PC&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Director</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_builder <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">builder</span>(self):
@@ -407,7 +407,7 @@ But, the response from this method is much different than the latest classes use
 <h4 id="facade-pattern">Facade Pattern</h4>
 <p>This pattern helps to do operations at a single place in a complex system with many interfaces, APIs.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Facade</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, a, b):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, a, b):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_a <span style="color:#f92672">=</span> a
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_b <span style="color:#f92672">=</span> b
 </span></span><span style="display:flex;"><span>        
@@ -415,14 +415,14 @@ But, the response from this method is much different than the latest classes use
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_a<span style="color:#f92672">.</span>random() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>_b<span style="color:#f92672">.</span>random()
 </span></span><span style="display:flex;"><span>		
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> rand(<span style="color:#ae81ff">100</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">random</span>(self):
@@ -445,7 +445,7 @@ But, the response from this method is much different than the latest classes use
 </span></span><span style="display:flex;"><span>		
 </span></span><span style="display:flex;"><span>		
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorldCommand</span>(Command):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, name):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, name):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(self):
@@ -470,7 +470,7 @@ But, the response from this method is much different than the latest classes use
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Paying via cash&#34;</span>)
 </span></span><span style="display:flex;"><span>		
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PaymentContext</span>(ABC):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, strategy: PaymentStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: PaymentStrategy):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_strategy <span style="color:#f92672">=</span> strategy
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
@@ -537,7 +537,7 @@ But, the response from this method is much different than the latest classes use
 </span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Add </span><span style="color:#e6db74">{</span>price<span style="color:#f92672">-</span>machine<span style="color:#f92672">.</span>amount<span style="color:#e6db74">}</span><span style="color:#e6db74"> coins to select product&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VendingMachine</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state <span style="color:#f92672">=</span> IdleState()
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>amount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>        
@@ -566,7 +566,7 @@ But, the response from this method is much different than the latest classes use
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Observer</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_observers <span style="color:#f92672">=</span> []
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">attach</span>(self, observer):
@@ -609,7 +609,7 @@ But, the response from this method is much different than the latest classes use
   <script>
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.getAttribute('data-theme');
+  const currentTheme = body.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   body.setAttribute('data-theme', newTheme);
@@ -617,11 +617,12 @@ function toggleTheme() {
   
   
   const button = document.querySelector('.theme-toggle');
-  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
@@ -629,8 +630,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    button.addEventListener('click', toggleTheme);
+  } else {
+    
+    setTimeout(initializeTheme, 100);
   }
-});
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
 </script></body>
 
 </html>

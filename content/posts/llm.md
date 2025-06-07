@@ -33,7 +33,7 @@ Aider comes with many convenient commands as well.
 ### Chat modes
 There are 3 chat modes included above:
 
-```
+```yaml
 /code
 /ask
 /architect

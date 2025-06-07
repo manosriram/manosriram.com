@@ -1,7 +1,7 @@
 <script>
 function toggleTheme() {
   const body = document.body;
-  const currentTheme = body.getAttribute('data-theme');
+  const currentTheme = body.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   
   body.setAttribute('data-theme', newTheme);
@@ -9,19 +9,30 @@ function toggleTheme() {
   
   // Update button icon
   const button = document.querySelector('.theme-toggle');
-  button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
-// Initialize theme on page load
-document.addEventListener('DOMContentLoaded', function() {
+function initializeTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   
-  // Update button icon on load and add event listener
+  // Update button icon and add event listener
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
     button.addEventListener('click', toggleTheme);
+  } else {
+    // Retry if button not found yet
+    setTimeout(initializeTheme, 100);
   }
-});
+}
+
+// Initialize theme - try multiple DOM ready states
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
 </script>

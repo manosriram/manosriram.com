@@ -4,7 +4,7 @@ description = "Experience in of the city's biggest book shops"
 date = 2025-06-15T00:00:00Z
 updated = 2025-06-15T00:00:00Z
 draft = false
-slug = "personal"
+slug = "blossom"
 +++
 
 Today, I visited [Blossom Book House](https://www.google.com/maps/place/Blossom+Book+House/@12.9742878,77.6043515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae167def9aaaab:0x8c3e58344d3b98b9!8m2!3d12.9742878!4d77.6069264!16s%2Fg%2F11fy4mq_7s?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D) for the first time. I have never visited a book store this big, so naturally i felt overwhelmed when I entered the building. It was a dark cloudy afternoon with little drizzles of rain drops. I entered the bookshop and went straight to the first row.

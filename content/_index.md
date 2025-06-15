@@ -6,4 +6,6 @@ Hi, I'm Mano. Interested in compilers/transpilers. Also worked on backend server
 
 Currently working at [IBM](https://www.ibm.com/in-en) as Software Engineer on Watson Code Assistant for Z (WCA4Z Transpiler for PL/I)
 
-previously wrote: [nimbusdb](https://github.com/nimbusdb), [lark](https://github.com/lark), [bf-c-transpiler](https://github.com/manosriram/bf-transpiler)
+Previously wrote: [nimbusdb](https://github.com/nimbusdb), [lark](https://github.com/lark)
+
+Currently writing: [8-bit CPU emulator](https://github.com/manosriram/8bitcpu)

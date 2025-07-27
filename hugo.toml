@@ -23,3 +23,7 @@ theme = 'hugo-bearblog'
   author = "Mano Sriram"
   hideMadeWithLine = true
   favicon = "favicon.svg"
+
+[services]
+  [services.googleAnalytics]
+    id = "G-WJT0MDZBL1"

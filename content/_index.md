@@ -8,7 +8,7 @@ Currently working at [IBM](https://www.ibm.com/in-en) as Software Engineer on Wa
 
 Previously wrote: [nimbusdb](https://github.com/manosriram/nimbusdb) (persistent key-value store), [lark](https://github.com/manosriram/lark) (toy interpreter with a weird syntax)
 
-Currently writing: [8-bit CPU emulator](https://github.com/manosriram/8bitcpu)
+Currently writing: [nanocompiler](https://github.com/manosriram/nanocompiler)
 
 
 ### Contact

@@ -2,13 +2,13 @@
 title: "Mano Sriram"
 ---
 
-Hi, I'm Mano. Interested in compilers/transpilers. Also worked on backend servers, dev-ops. I do have a homelab setup with a Raspberry-PI4, mainly for hosting hobby projects.
+Hi, I'm Mano. Interested in Neural Networks, Agents, GPTs, and everything AI. Also worked on backend servers, dev-ops. I'm also interested in homelabbing: currently have a single node Lenovo M720s server running. More on this [here](https://manosriram.com/posts/homelab-v2/)
 
-Currently working at [IBM](https://www.ibm.com/in-en) as Software Engineer on Watson Code Assistant for Z (WCA4Z Transpiler for PL/I)
+Currently working at [IBM](https://www.ibm.com/in-en) as Software Engineer on IBM Bob Agentic IDE
 
 Previously wrote: [nimbusdb](https://github.com/manosriram/nimbusdb) (persistent key-value store), [lark](https://github.com/manosriram/lark) (toy interpreter with a weird syntax)
 
-Currently writing: [nanocompiler](https://github.com/manosriram/nanocompiler)
+Currently learning: Neural Networks with Pytorch, and Agents
 
 
 ### Contact

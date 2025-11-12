@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Mano Sriram</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apple, AI, and Crypto</title>
+      <link>http://localhost:1313/posts/ai/</link>
+      <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ai/</guid>
+      <description>&lt;p&gt;I wanted to talk about my opinion on 4 things.&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-the-com-bubble-and-ai-economy&#34;&gt;1. The .com bubble and AI economy&lt;/h3&gt;&#xA;&lt;p&gt;During the late 90s and early 2000s, .com boomed. Any solution, you put it on the internet with a .com bubble, and you most probably would be funded. This bubble burst, but .coms became the internet norm, although there are other TLDs.&lt;/p&gt;&#xA;&lt;p&gt;Is the same happening for AI right now? Because any company saying AI in their solution description is getting funded, I don&amp;rsquo;t know how. For example, this &lt;a href=&#34;https://x.com/ycombinator/status/1988366241460089118&#34;&gt;company&lt;/a&gt; recently got funded from YC. Although I do not care about YC companies these days, this is a new low.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Getting serious with home server and self-hosting</title>
       <link>http://localhost:1313/posts/homelab-v2/</link>

@@ -8,8 +8,7 @@ Currently working at [IBM](https://www.ibm.com/in-en) as Software Engineer on IB
 
 Previously wrote: [nimbusdb](https://github.com/manosriram/nimbusdb) (persistent key-value store), [lark](https://github.com/manosriram/lark) (toy interpreter with a weird syntax)
 
-Currently learning: Neural Nets (Math and Pytorch), AI Agents
-
+Currently writing: [wingman: AI wingman for codebases](https://github.com/manosriram/wingman)
 
 ### Contact
 

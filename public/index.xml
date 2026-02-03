@@ -6,8 +6,15 @@
     <description>Recent content on Mano Sriram</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Clawdbot</title>
+      <link>http://localhost:1313/posts/clawdbot/</link>
+      <pubDate>Tue, 03 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/clawdbot/</guid>
+      <description>&lt;p&gt;Main elements which drive clawdbot:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Gateway and Nodes&lt;/li&gt;&#xA;&lt;li&gt;Memory and Context Compaction&lt;/li&gt;&#xA;&lt;li&gt;Agent Runtime and SubAgents&lt;/li&gt;&#xA;&lt;li&gt;Channels&lt;/li&gt;&#xA;&lt;li&gt;Skills&lt;/li&gt;&#xA;&lt;li&gt;Hooks&lt;/li&gt;&#xA;&lt;li&gt;Plugins&lt;/li&gt;&#xA;&lt;li&gt;Templates (AGENTS.md, BOOT.md, HEARTBEAT.md, IDENTITY.md, SOUL.md, TOOLS.md, USER.md)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;gateway&#34;&gt;Gateway&lt;/h2&gt;&#xA;&lt;p&gt;This is the main server that handles requests from cli and acts as a control plane for all integrations (macOS, web UI, telegram, whatsapp, etc&amp;hellip;).&lt;/p&gt;&#xA;&lt;p&gt;Acts as a websocket handler that emits events like agent, chat, presence, healthcheck, cron, etc&amp;hellip;&lt;/p&gt;&#xA;&lt;h4 id=&#34;nodes-macos--ios--android--headless&#34;&gt;Nodes (macOS / iOS / Android / headless)&lt;/h4&gt;&#xA;&lt;p&gt;Any client connecting to the gateway with &lt;code&gt;role: node&lt;/code&gt; is considered to be a node.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Getting serious with home server and self-hosting</title>
       <link>http://localhost:1313/posts/homelab-v2/</link>

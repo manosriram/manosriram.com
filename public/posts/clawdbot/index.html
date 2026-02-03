@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/favicon.svg" />
+<title>Understanding Clawdbot | Mano Sriram</title>
+<meta name="title" content="Understanding Clawdbot" />
+<meta name="description" content="Clawdbot (openclaw) architecture explained under 5-minutes" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/posts/clawdbot/">
+  <meta property="og:site_name" content="Mano Sriram">
+  <meta property="og:title" content="Understanding Clawdbot">
+  <meta property="og:description" content="Clawdbot (openclaw) architecture explained under 5-minutes">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-02-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-03T00:00:00+00:00">
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Clawdbot">
+  <meta name="twitter:description" content="Clawdbot (openclaw) architecture explained under 5-minutes">
+
+
+
+
+  <meta itemprop="name" content="Understanding Clawdbot">
+  <meta itemprop="description" content="Clawdbot (openclaw) architecture explained under 5-minutes">
+  <meta itemprop="datePublished" content="2026-02-03T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-02-03T00:00:00+00:00">
+  <meta itemprop="wordCount" content="706">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  :root {
+    --width: 720px;
+    --font-main: Verdana, sans-serif;
+    --font-secondary: Verdana, sans-serif;
+    --font-scale: 1em;
+  }
+
+  [data-theme="light"], :root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #444;
+    --link-color: #3273dc;
+    --visited-color: #8b6fcb;
+    --code-background-color: #000;
+    --code-color: #fff;
+    --blockquote-color: #222;
+  }
+
+  [data-theme="dark"] {
+    --background-color: #01242e;
+    --heading-color: #eee;
+    --text-color: #ddd;
+    --link-color: #8cc2dd;
+    --visited-color: #8b6fcb;
+    --code-background-color: #1a1a1a;
+    --code-color: #f8f8f2;
+    --blockquote-color: #ccc;
+  }
+
+  body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+  }
+
+  a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  nav a {
+    margin-right: 8px;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: auto;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+
+  strong,
+  b {
+    color: var(--heading-color);
+  }
+
+  button {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  time {
+    font-family: monospace;
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  main {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px dashed;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    font-family: monospace;
+    padding: 2px 4px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: var(--blockquote-color);
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px 0;
+    text-align: center;
+  }
+
+  .title:hover {
+    text-decoration: none;
+  }
+
+  .title h1 {
+    font-size: 1.5em;
+  }
+
+  .inline {
+    width: auto !important;
+  }
+
+  .highlight,
+  .code,
+  pre {
+    padding: 5px;
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: var(--visited-color);
+  }
+
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJT0MDZBL1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WJT0MDZBL1');
+</script>
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mano Sriram</h2>
+</a>
+<nav>
+<a href="/">home</a>
+
+<a href="/posts/">blog</a>
+
+<a href="/resume.pdf">resume</a>
+
+<button class="theme-toggle" aria-label="Toggle dark mode">🌙</button></nav>
+</header>
+  <main>
+
+<content>
+  <p><img src="/img/clawdbot.jpg" alt="clawdbot_header"></p>
+<p>Main elements which drive clawdbot:</p>
+<ol>
+<li>Gateway and Nodes</li>
+<li>Memory and Context Compaction</li>
+<li>Agent Runtime and SubAgents</li>
+<li>Channels</li>
+<li>Skills</li>
+<li>Hooks</li>
+<li>Plugins</li>
+<li>Templates (AGENTS.md, BOOT.md, HEARTBEAT.md, IDENTITY.md, SOUL.md, TOOLS.md, USER.md)</li>
+</ol>
+<h2 id="gateway">Gateway</h2>
+<p>This is the main server that handles requests from cli and acts as a control plane for all integrations (macOS, web UI, telegram, whatsapp, etc&hellip;).</p>
+<p>Acts as a websocket handler that emits events like agent, chat, presence, healthcheck, cron, etc&hellip;</p>
+<h4 id="nodes-macos--ios--android--headless">Nodes (macOS / iOS / Android / headless)</h4>
+<p>Any client connecting to the gateway with <code>role: node</code> is considered to be a node.</p>
+<p>ref: <a href="https://docs.openclaw.ai/concepts/architecture#overview">https://docs.openclaw.ai/concepts/architecture#overview</a></p>
+<h2 id="memory">Memory</h2>
+<p>There are 2 memory layers (files):</p>
+<ol>
+<li>
+<p>memory/YYYY-MM-DD.md: Stores that day&rsquo;s memory writings. This is retrieved when session starts.</p>
+</li>
+<li>
+<p>MEMORY.md: Long Term memory storage. User can store things by saying &ldquo;Remember this&rdquo; or &ldquo;Write it down&rdquo; or something like that.</p>
+</li>
+</ol>
+<p>ref: <a href="https://docs.openclaw.ai/concepts/memory#memory-files-markdown">https://docs.openclaw.ai/concepts/memory#memory-files-markdown</a></p>
+<h2 id="compaction">Compaction</h2>
+<p>Older context history is removed by removing older history but just keeping the summary of the old context history  which takes much lesser space/tokens. This is done automatically (auto-compaction) or by calling <code>/compact</code> manually.</p>
+<p>ref: <a href="https://docs.openclaw.ai/concepts/compaction">https://docs.openclaw.ai/concepts/compaction</a></p>
+<h2 id="agent-runtime-and-subagents">Agent runtime and SubAgents</h2>
+<p>Agent runtime is the core loop which takes care of agentic actions like taking inputs, building prompt/context, manage state.</p>
+<p>clawdbot reuses runtime components from pi-mono (<a href="https://github.com/badlogic/pi-mono)">https://github.com/badlogic/pi-mono)</a>, only the main parts are derived from pi-mono. Everything else is implemented by clawdbot itself.</p>
+<p>SubAgents are agents/processes spawned by the main agent so that the main loop isn&rsquo;t blocked. By default, the subagents do not get complete tool access as of the main agent, its a bit restricted to prevent uncontrolled &ldquo;agent-of-agents explosion&rdquo;.</p>
+<p>ref: <a href="https://docs.openclaw.ai/cli/agents">https://docs.openclaw.ai/cli/agents</a></p>
+<h2 id="channels">Channels</h2>
+<p>Channels are a way to manage channel accounts (telegram, whatsapp, etc&hellip;) and their status on the gateway. For example,</p>
+<p><code>openclaw channels add --channel telegram --token &lt;bot-token&gt;</code> is used to add a telegram channel.
+ref: <a href="https://docs.openclaw.ai/cli/channels">https://docs.openclaw.ai/cli/channels</a></p>
+<h2 id="skills">Skills</h2>
+<p>clawdbot uses separate dir for each skill.</p>
+<p>Skill is something the bot can learn and do work upon. Each skill dir will have a SKILL.md file which contains information about the skill.</p>
+<p>Shared skills (skills accessed by all agent instances of clawdbot) are stored in ~/.clawdbot/skills whereas skill for a specific agent instance is stored at <!-- raw HTML omitted -->/skills directory.</p>
+<p>External skills are considered as untrusted code since it has the ability to make the clawdbot do things which are not enabled by default.</p>
+<p>ref: <a href="https://docs.openclaw.ai/tools/skills#skills">https://docs.openclaw.ai/tools/skills#skills</a></p>
+<h2 id="hooks">Hooks</h2>
+<p>Hooks trigger when something is done by the agent. They run inside the gateway, with the custom hook having its own dir like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>my-hook/
+</span></span><span style="display:flex;"><span>├── HOOK.md          # Metadata + documentation
+</span></span><span style="display:flex;"><span>└── handler.ts       # Handler implementation
+</span></span></code></pre></div><p>This hook is automatically triggered as per the handler.ts above. The HOOK.md file is of the structure:
+markdown</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>name: my-hook
+</span></span><span style="display:flex;"><span>description: &#34;Short description of what this hook does&#34;
+</span></span><span style="display:flex;"><span>homepage: https://docs.openclaw.ai/hooks#my-hook
+</span></span><span style="display:flex;"><span>metadata:
+</span></span><span style="display:flex;"><span>  { &#34;openclaw&#34;: { &#34;emoji&#34;: &#34;🔗&#34;, &#34;events&#34;: [&#34;command:new&#34;], &#34;requires&#34;: { &#34;bins&#34;: [&#34;node&#34;] } } }
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># My Hook
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Detailed documentation goes here...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## What It Does
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Listens for <span style="color:#e6db74">`/new`</span> commands
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Performs some action
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Logs the result
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Requirements
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Node.js must be installed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Configuration
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>No configuration needed.
+</span></span></code></pre></div><p>Refer <a href="https://docs.openclaw.ai/hooks#handler-implementation">handler-implementation</a> for handler.ts example.</p>
+<h2 id="plugins">Plugins</h2>
+<p>A Plugin is just a piece of code (ts modules) that extends the functionality of openclaw. This is a list of available plugins as of now. All plugins run in-process with the gateway, so the code/plugin is considered as trusted.
+ref: <a href="https://docs.openclaw.ai/plugin">https://docs.openclaw.ai/plugin</a></p>
+<h2 id="templates">Templates</h2>
+<p>This is a list of templates (instructions editable by user) for the clawdbot to follow all the time.</p>
+<p><a href="https://docs.openclaw.ai/reference/templates/AGENTS">AGENTS.md</a> is a guide on how clawdbot should start and behave during sessions. It covers:</p>
+<ol>
+<li>First Run</li>
+<li>Memory</li>
+<li>Safety</li>
+<li>Group Chats</li>
+<li>Know When to Speak!</li>
+<li>React like a Human!</li>
+<li>Tools</li>
+<li>Heartbeat vs Cron</li>
+<li>Memory maintenance</li>
+</ol>
+<p><a href="https://docs.openclaw.ai/reference/templates/SOUL">SOUL.md</a> tells the bot about who it is and what are the ethical rules it must follow. This file tells about the type of soul of the bot.</p>
+<p><a href="https://docs.openclaw.ai/reference/templates/IDENTITY">IDENTITY.md</a> tell about yourself (the user). Who you are and what kind of person are you. The bot remembers this when conversing with the user.</p>
+<p><a href="https://docs.openclaw.ai/reference/templates/BOOTSTRAP">BOOTSTRAP.md</a> is the file/memory which the bot reads after waking up or starting up. This document contains links to other templates.</p>
+<p><a href="https://docs.openclaw.ai/reference/templates/BOOT">BOOT.md</a> First Instructions to follow on bootup/start.</p>
+<p><a href="https://docs.openclaw.ai/reference/templates/TOOLS">TOOLS.md</a> Summary of the user&rsquo;s preferences and setup of clawdbot for itself to understand how you work.</p>
+<p>ref: <a href="https://docs.openclaw.ai/reference/templates">https://docs.openclaw.ai/reference/templates</a></p>
+<p>written for <a href="x.com/manosriram">x.com/manosriram</a>: <a href="https://x.com/manosriram/status/2018580767757201762">article</a></p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer>
+</footer>
+
+  <script>
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  
+  const button = document.querySelector('.theme-toggle');
+  if (button) {
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    button.addEventListener('click', toggleTheme);
+  } else {
+    
+    setTimeout(initializeTheme, 100);
+  }
+}
+
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeTheme);
+} else {
+  initializeTheme();
+}
+</script></body>
+
+</html>

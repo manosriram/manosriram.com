@@ -13,7 +13,21 @@
       <link>http://localhost:1313/posts/clawdbot/</link>
       <pubDate>Tue, 03 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/clawdbot/</guid>
-      <description>&lt;p&gt;Main elements which drive clawdbot:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Gateway and Nodes&lt;/li&gt;&#xA;&lt;li&gt;Memory and Context Compaction&lt;/li&gt;&#xA;&lt;li&gt;Agent Runtime and SubAgents&lt;/li&gt;&#xA;&lt;li&gt;Channels&lt;/li&gt;&#xA;&lt;li&gt;Skills&lt;/li&gt;&#xA;&lt;li&gt;Hooks&lt;/li&gt;&#xA;&lt;li&gt;Plugins&lt;/li&gt;&#xA;&lt;li&gt;Templates (AGENTS.md, BOOT.md, HEARTBEAT.md, IDENTITY.md, SOUL.md, TOOLS.md, USER.md)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;gateway&#34;&gt;Gateway&lt;/h2&gt;&#xA;&lt;p&gt;This is the main server that handles requests from cli and acts as a control plane for all integrations (macOS, web UI, telegram, whatsapp, etc&amp;hellip;).&lt;/p&gt;&#xA;&lt;p&gt;Acts as a websocket handler that emits events like agent, chat, presence, healthcheck, cron, etc&amp;hellip;&lt;/p&gt;&#xA;&lt;h4 id=&#34;nodes-macos--ios--android--headless&#34;&gt;Nodes (macOS / iOS / Android / headless)&lt;/h4&gt;&#xA;&lt;p&gt;Any client connecting to the gateway with &lt;code&gt;role: node&lt;/code&gt; is considered to be a node.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/clawdbot.jpg&#34; alt=&#34;clawdbot_header&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Main elements which drive clawdbot:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Gateway and Nodes&lt;/li&gt;&#xA;&lt;li&gt;Memory and Context Compaction&lt;/li&gt;&#xA;&lt;li&gt;Agent Runtime and SubAgents&lt;/li&gt;&#xA;&lt;li&gt;Channels&lt;/li&gt;&#xA;&lt;li&gt;Skills&lt;/li&gt;&#xA;&lt;li&gt;Hooks&lt;/li&gt;&#xA;&lt;li&gt;Plugins&lt;/li&gt;&#xA;&lt;li&gt;Templates (AGENTS.md, BOOT.md, HEARTBEAT.md, IDENTITY.md, SOUL.md, TOOLS.md, USER.md)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;gateway&#34;&gt;Gateway&lt;/h2&gt;&#xA;&lt;p&gt;This is the main server that handles requests from cli and acts as a control plane for all integrations (macOS, web UI, telegram, whatsapp, etc&amp;hellip;).&lt;/p&gt;&#xA;&lt;p&gt;Acts as a websocket handler that emits events like agent, chat, presence, healthcheck, cron, etc&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thoughts on writing code as a hobby</title>
+      <link>http://localhost:1313/posts/code-as-a-hobby/</link>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/code-as-a-hobby/</guid>
+      <description>&lt;p&gt;With everyone talking about Claude code and Opus4.5, writing code manually looks very bearish. Before the LLMs, writing code was manual, meaning everything needed to be written by hand. Today, at least for me, I use LLMs to write the boilerplates, or anything that I know exactly what it does. When coding, I mostly use cli helpers like &lt;a href=&#34;https://github.com/Aider-AI/aider&#34;&gt;aider&lt;/a&gt; which stands beside answering my questions.&lt;/p&gt;&#xA;&lt;p&gt;Recently, TailwindCSS laid off 75% of its workforce. This is because of how LLM works: people dont read docs anymore, LLM has already scraped that part. &lt;a href=&#34;https://github.com/tailwindlabs/tailwindcss.com/pull/2388#issuecomment-3717222957&#34;&gt;[ref]&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Apple, AI, and Crypto</title>
+      <link>http://localhost:1313/posts/apple-ai-crypto/</link>
+      <pubDate>Wed, 12 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/apple-ai-crypto/</guid>
+      <description>&lt;p&gt;I wanted to talk about my opinion on 4 things.&lt;/p&gt;&#xA;&lt;h3 id=&#34;1-the-com-bubble-and-ai-economy&#34;&gt;1. The .com bubble and AI economy&lt;/h3&gt;&#xA;&lt;p&gt;During the late 90s and early 2000s, .com boomed. Any solution, you put it on the internet with a .com bubble, and you most probably would be funded. This bubble burst, but .coms became the internet norm, although there are other TLDs.&lt;/p&gt;&#xA;&lt;p&gt;Is the same happening for AI right now? Because any company saying AI in their solution description is getting funded, I don&amp;rsquo;t know how. For example, this &lt;a href=&#34;https://x.com/ycombinator/status/1988366241460089118&#34;&gt;company&lt;/a&gt; recently got funded from YC. Although I do not care about YC companies these days, this is a new low.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Getting serious with home server and self-hosting</title>

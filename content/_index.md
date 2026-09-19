@@ -2,7 +2,7 @@
 title: "Mano Sriram"
 ---
 
-Hi, I'm Mano. Interested in Containers, backend servers, LLMs, and agents. I'm also interested in homelabbing: currently have a single node Lenovo M720s server running. More on this [here](https://manosriram.com/posts/homelab-v2/)
+Hi, I'm Mano. Interested in LLM architecture, agents, backend-servers, containers. I'm also interested in homelabbing: currently have a single node Lenovo M720s server running. More on this [here](https://manosriram.com/posts/homelab-v2/)
 
 I am working at [IBM](https://www.ibm.com/in-en) as Software Engineer
 

@@ -8,7 +8,7 @@ I am working at [IBM](https://www.ibm.com/in-en) as Software Engineer
 
 Previously wrote: [nimbusdb](https://github.com/manosriram/nimbusdb) (persistent key-value store), [tinymail](https://github.com/manosriram/tinymail) (lightweight email client), [lark](https://github.com/manosriram/lark) (toy interpreter with a weird syntax)
 
-Currently exploring LLMs and agents.
+Currently writing [bit: a tiny harness with powerful plugins](https://github.com/manosriram/bit)
 
 ### Contact
 

@@ -24,6 +24,6 @@ theme = 'hugo-bearblog'
   hideMadeWithLine = true
   favicon = "favicon.svg"
 
-[services]
-  [services.googleAnalytics]
-    id = "G-WJT0MDZBL1"
+
+[markup.highlight]
+  noClasses = false

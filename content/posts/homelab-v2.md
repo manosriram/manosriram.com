@@ -73,9 +73,9 @@ I wrote down the ones which I would actually need in order to de-google (inspire
  I get this beautiful autocomplete, which is self-hosted on my server. Knowing that the data is safe with you gives you a greater level of satisfaction than something that any privately owned company promises.
 
 
- ![Vaultwarden before autocomplete](/img/vw-autocomplete-before.png)
+ ![Vaultwarden before autocomplete](/img/vw-autocomplete-before.jpg)
 
- ![Vaultwarden after autocomplete](/img/vw-autocomplete-after.png)
+ ![Vaultwarden after autocomplete](/img/vw-autocomplete-after.jpg)
 
 5. **YouTube archivals**: I wanted to keep a copy of any YouTube video that I feel is great (and videos which might be taken down for some reason), hence archiving YouTube videos is a concept of its own. [TubeArchivist](https://github.com/tubearchivist/tubearchivist) is a great self-hostable tool to download videos. Every tool of this kind is a yt-dl wrapper.
 
@@ -90,7 +90,7 @@ I still use Nginx-Proxy-Manager for routing subdomains to respective ports with 
 
 ### Hardware specs
 
-![Lenovo M720s](/img/homelab.png)
+![Lenovo M720s](/img/homelab.jpg)
 
 The RPi I used had 8GB RAM and an ARM processor. I was running headless Raspbian on it, which was light enough to keep it running. Since I have gotten serious with home servers, I needed a real computer (not a new one necessarily).
 
@@ -111,7 +111,7 @@ I decided to go with 2 parts:
 
    Previously, I used [Uptime-kuma](https://github.com/louislam/uptime-kuma) for this (without the notifications). The problem with uptime-kuma is that it does not run on a config file. Everything must be done via the GUI, which I did not like at all.
 
-   ![z](/img/gatus.png)
+   ![z](/img/gatus.jpg)
 
 - Lab monitoring: All services are now being monitored except Gatus (lol). I would not know if Gatus went down. To solve this, I added a check to ping for a healthchecks.io monitor every 15 minutes with a grace period of an extra 15 minutes.
 
@@ -139,9 +139,9 @@ All of this is done by interacting with the B2 cloud. Both the cron job pings he
 
 This is not exactly the 3-2-1 backup strategy, but this is safe enough for me (at least for now).
 
-![Screenshot of healthchecksio dashboard](/img/healthchecksio.png)
+![Screenshot of healthchecksio dashboard](/img/healthchecksio.jpg)
 
-![Screenshot of restic snapshots listing](/img/restic.png)
+![Screenshot of restic snapshots listing](/img/restic.jpg)
 
 
 All of this setup from scratch would not be possible without the help of the subreddits referenced below. There are a lot of articles and helpful people who write about their setup and best practices
@@ -149,7 +149,7 @@ to follow. I cannot thank these anonymous people enough.
 
 I try to explain all of this homelab setup to my non-tech wife, she cares deeply so she nods along, but I’m pretty sure she is just nodding so that I would stop talking about it.
 
-![Coffee shop](/img/blog-coffee.png)
+![Coffee shop](/img/blog-coffee.jpg)
 
 Writing this from a coffee shop. Thanks for reading!
 

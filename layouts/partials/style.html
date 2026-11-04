@@ -1,198 +1,48 @@
 <style>
-  :root {
-    --width: 720px;
-    --font-main: Verdana, sans-serif;
-    --font-secondary: Verdana, sans-serif;
-    --font-scale: 1em;
+  /* Paper: book-like serif reading, warm off-white. */
+  :root, [data-theme="light"] {
+    --bg: #fbfaf7; --text: #2b2b2b; --muted: #77736b; --heading: #111;
+    --link: #8a3b12; --rule: #e6e2d9; --code-bg: #f1eee7;
   }
-
-  [data-theme="light"], :root {
-    --background-color: #fff;
-    --heading-color: #222;
-    --text-color: #444;
-    --link-color: #3273dc;
-    --visited-color: #8b6fcb;
-    --code-background-color: #000;
-    --code-color: #fff;
-    --blockquote-color: #222;
-  }
-
   [data-theme="dark"] {
-    --background-color: #01242e;
-    --heading-color: #eee;
-    --text-color: #ddd;
-    --link-color: #8cc2dd;
-    --visited-color: #8b6fcb;
-    --code-background-color: #1a1a1a;
-    --code-color: #f8f8f2;
-    --blockquote-color: #ccc;
+    --bg: #1c1b19; --text: #d9d5cc; --muted: #8f8a80; --heading: #f2efe8;
+    --link: #e0a37a; --rule: #34322e; --code-bg: #262522;
   }
-
   body {
-    font-family: var(--font-secondary);
-    font-size: var(--font-scale);
-    margin: auto;
-    padding: 20px;
-    max-width: var(--width);
-    text-align: left;
-    background-color: var(--background-color);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.5;
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 auto; padding: 3rem 1.25rem; max-width: 38rem;
+    font: 1.125rem/1.75 Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased; overflow-wrap: break-word;
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-main);
-    color: var(--heading-color);
-  }
-
-  a {
-    color: var(--link-color);
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  nav a {
-    margin-right: 8px;
-  }
-
-  .theme-toggle {
-    background: none;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    margin-left: auto;
-    transition: all 0.3s ease;
-  }
-
-  .theme-toggle:hover {
-    background-color: var(--text-color);
-    color: var(--background-color);
-  }
-
-  strong,
-  b {
-    color: var(--heading-color);
-  }
-
-  button {
-    margin: 0;
-    cursor: pointer;
-  }
-
-  time {
-    font-family: monospace;
-    font-style: normal;
-    font-size: 15px;
-  }
-
-  main {
-    line-height: 1.6;
-  }
-
-  table {
-    width: 100%;
-  }
-
-  hr {
-    border: 0;
-    border-top: 1px dashed;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  code {
-    font-family: monospace;
-    padding: 2px 4px;
-    background-color: var(--code-background-color);
-    color: var(--code-color);
-    border-radius: 3px;
-    font-size: 1em;
-  }
-
-  blockquote {
-    border-left: 1px solid #999;
-    color: var(--blockquote-color);
-    padding-left: 20px;
-    font-style: italic;
-  }
-
-  footer {
-    padding: 25px 0;
-    text-align: center;
-  }
-
-  .title:hover {
-    text-decoration: none;
-  }
-
-  .title h1 {
-    font-size: 1.5em;
-  }
-
-  .inline {
-    width: auto !important;
-  }
-
-  .highlight,
-  .code,
-  pre {
-    padding: 5px;
-    color: var(--code-color);
-    border-radius: 3px;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    overflow-x: auto;
-    font-family: 'Courier New', monospace;
-    font-size: 1.1em;
-    line-height: 1.4;
-  }
-
-  pre code {
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    font-size: inherit;
-  }
-
-  /* blog post list */
-  ul.blog-posts {
-    list-style-type: none;
-    padding: unset;
-  }
-
-  ul.blog-posts li {
-    display: flex;
-  }
-
-  ul.blog-posts li span {
-    flex: 0 0 130px;
-  }
-
-  ul.blog-posts li a:visited {
-    color: var(--visited-color);
-  }
-
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; margin-bottom: 3rem; }
+  .title { text-decoration: none; }
+  .title h2 { margin: 0; font-size: 1.25rem; color: var(--heading); font-weight: 700; }
+  nav { display: flex; gap: 1.1rem; align-items: baseline; font-size: .95rem; font-style: italic; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--link); }
+  h1, h2, h3, h4 { color: var(--heading); line-height: 1.25; font-weight: 700; }
+  h1 { font-size: 2rem; margin: 0 0 .25rem; letter-spacing: -.01em; }
+  h2 { font-size: 1.4rem; margin-top: 2.5rem; }
+  h3 { font-size: 1.15rem; margin-top: 2rem; }
+  h1 + p time { color: var(--muted); font-style: italic; font-size: .95rem; }
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  strong, b { color: var(--heading); }
+  img { max-width: 100%; height: auto; display: block; margin: 2rem auto; border-radius: 2px; }
+  hr { border: 0; text-align: center; margin: 2.5rem 0; }
+  hr::after { content: "* * *"; color: var(--muted); letter-spacing: .5em; }
+  blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 2px solid var(--link); color: var(--muted); font-style: italic; }
+  code { font: .85em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 3px; }
+  pre { padding: 1rem; border-radius: 4px; overflow-x: auto; line-height: 1.5; font-size: .95rem; background: var(--code-bg); }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: .4rem .5rem; text-align: left; }
+  ul.blog-posts { list-style: none; padding: 0; }
+  ul.blog-posts li { display: flex; gap: 1.5rem; padding: .5rem 0; border-bottom: 1px solid var(--rule); }
+  ul.blog-posts li span { flex: 0 0 7.5rem; color: var(--muted); font-style: italic; font-size: .95rem; }
+  ul.blog-posts li a { text-decoration: none; color: var(--heading); }
+  ul.blog-posts li a:hover { color: var(--link); }
+  ul.blog-posts i { font-style: inherit; }
+  .theme-toggle { background: none; border: 0; padding: 0; cursor: pointer; font-size: .95rem; color: var(--muted); }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; text-align: center; }
+  @media (max-width: 520px) { ul.blog-posts li { flex-direction: column; gap: 0; } ul.blog-posts li span { flex: none; } }
 </style>

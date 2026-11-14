@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="prose intro">{{ .Content }}</div>
+<section class="recent">
+  <h2>Recent writing</h2>
+  <div>
+    {{ partial "postlist.html" (dict "pages" (first 5 (where site.RegularPages "Section" "posts")) "fmt" "Jan 2006") }}
+    <p><a class="more" href="{{ "posts/" | relURL }}">All posts →</a></p>
+  </div>
+</section>
+{{ end }}

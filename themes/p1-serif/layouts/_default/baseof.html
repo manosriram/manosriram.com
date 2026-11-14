@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ .Description | default site.Params.description }}">
+  {{ with site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
+  {{ range .AlternativeOutputFormats }}<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
+  <script>
+    // set before first paint so there is no flash
+    (function () {
+      var t; try { t = localStorage.getItem('theme') } catch (e) {}
+      document.documentElement.dataset.theme = t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+    function toggleTheme() {
+      var r = document.documentElement, t = r.dataset.theme === 'dark' ? 'light' : 'dark';
+      r.dataset.theme = t;
+      try { localStorage.setItem('theme', t) } catch (e) {}
+    }
+  </script>
+  {{ with resources.Get "css/p1-serif.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+  {{ partial "custom_head.html" . }}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+    <p class="tagline">{{ site.Params.description }}</p>
+    <nav>
+      {{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+      <button class="toggle" type="button" aria-label="Toggle dark mode" onclick="toggleTheme()"></button>
+    </nav>
+  </header>
+  <main>{{ block "main" . }}{{ end }}</main>
+  <footer>© {{ now.Year }} {{ site.Params.author }} · <a href="{{ "index.xml" | relURL }}">RSS</a></footer>
+</body>
+</html>

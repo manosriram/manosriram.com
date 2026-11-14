@@ -1,7 +1,7 @@
 baseURL = 'https://manosriram.com/'
 languageCode = 'en-us'
 title = 'Mano Sriram'
-theme = 'hugo-bearblog'
+theme = 'p1-serif'
 
 [[menu.main]]
   name = "home"
